@@ -1,0 +1,1128 @@
+Undo	撤销
+Redo	重做
+New Canvas	新建画布
+Open Project	打开项目
+Open Recent	最近打开
+Clear Menu	清空列表
+Import Images	导入图片
+Save	保存
+Save As	另存为
+Export JPEG	导出 JPEG
+Export PNG	导出 PNG
+Export As	导出为
+Close Project	关闭项目
+Search Commands	搜索命令
+Toggle Fullscreen	切换全屏
+Fit Canvas	适合窗口
+Actual Pixels	实际像素
+Zoom In	放大
+Zoom Out	缩小
+Navigator (300% and above)	导航器（缩放 300% 及以上）
+Pixel Grid (800% and above)	像素网格（缩放 800% 及以上）
+Show Transform Controls	显示变换控件
+Proof Colors	校样颜色
+CMYK Proof Colors	CMYK 校样颜色
+Gamut Warning	色域警告
+CMYK Gamut Warning	CMYK 色域警告
+Profile	颜色配置文件
+Load Profile	载入配置文件
+Show	显示
+Grid	网格
+Guides	参考线
+Grid Settings	网格设置
+Rulers	标尺
+Snap	吸附
+Snap To	吸附到
+Layers	图层
+Document Bounds	文档边界
+Lock Guides	锁定参考线
+Clear Guides	清除参考线
+Hide Compositor	隐藏 Compositor
+Hide Others	隐藏其他应用
+Show All	全部显示
+Cut	剪切
+Copy	复制
+Copy Merged	合并拷贝
+Paste	粘贴
+Keyboard Shortcuts	键盘快捷键
+Fill with Foreground Color	填充前景色
+Fill with Background Color	填充背景色
+Clear Selection Pixels	清除选区像素
+Content-Aware Fill	内容识别填充
+Select	选择
+All	全部
+Deselect	取消选择
+Inverse	反向选择
+Layer's Pixels	图层像素
+Subject	主体
+Color Range	色彩范围
+Mask's Black Areas	蒙版黑色区域
+Expand	扩展
+Contract	收缩
+Feather	羽化
+Image	图像
+Curves	曲线
+Levels	色阶
+Hue/Saturation	色相/饱和度
+Invert Mask	反相蒙版
+Invert	反相
+Canvas Size	画布大小
+Image Size	图像大小
+Trim	修剪
+Rotate Canvas 90° Clockwise	顺时针旋转画布 90°
+Rotate Canvas 90° Counterclockwise	逆时针旋转画布 90°
+Flip Canvas Horizontal	水平翻转画布
+Flip Canvas Vertical	垂直翻转画布
+Filter	滤镜
+Last Filter	上次使用的滤镜
+Layer	图层
+New Adjustment Layer	新建调整图层
+Edit Adjustment	编辑调整
+Transform Selection	变换选区
+Transform Layer	变换图层
+Duplicate Layer	复制图层
+Layer via Copy	通过拷贝新建图层
+Create Clipping Mask	创建剪贴蒙版
+Release Clipping Mask	释放剪贴蒙版
+Group Selected Layers	将所选图层编组
+Ungroup Layers	取消图层编组
+Move Out of Folder	移出图层组
+New Blank Layer	新建空白图层
+Rename Layer	重命名图层
+Show Layer	显示图层
+Hide Layer	隐藏图层
+Move Layer Up	上移图层
+Move Layer Down	下移图层
+Flip Layer Horizontal	水平翻转图层
+Flip Layer Vertical	垂直翻转图层
+Delete Layer Mask	删除图层蒙版
+Delete Layers	删除多个图层
+Delete Layer	删除图层
+Choose a CMYK ICC profile, such as the one your printer gave you	选择 CMYK ICC 配置文件，例如印刷厂提供的文件
+Eyedropper	吸管
+Sample Ring	取样环
+Select a tool	选择工具
+Untitled	未命名
+New canvas	新建画布
+Fit	适合窗口
+Import couldn’t finish	导入未完成
+Couldn’t paint	无法绘制
+Couldn’t crop	无法裁剪
+sRGB · Transparent	sRGB · 透明
+Ready when you are	准备就绪
+Working…	正在处理…
+Importing images…	正在导入图片…
+Drag to resize the panel	拖动以调整面板大小
+None	无
+Delete	删除
+Space	空格
+Menus	菜单
+Canvas & Layers	画布与图层
+Fill with Foreground	填充前景色
+Fill with Background	填充背景色
+Select All	全选
+Inverse Selection	反向选择
+Select Subject	选择主体
+Invert Pixels / Mask	反相像素/蒙版
+Transform Layer / Selection	变换图层/选区
+Duplicate / Layer via Copy	复制/通过拷贝新建图层
+Toggle Clipping Mask	切换剪贴蒙版
+Group Layers	图层编组
+Merge Layers	合并图层
+Show Grid	显示网格
+Show Guides	显示参考线
+Show Rulers	显示标尺
+Toggle Fullscreen: the canvas alone on black (Esc also leaves)	切换全屏：黑色背景仅显示画布（Esc 也可退出）
+Select tool	选择工具
+Move / Transform tool	移动/变换工具
+Hand tool	抓手工具
+Zoom tool	缩放工具
+Brush tool	画笔工具
+Eraser	橡皮擦
+Spot Healing	污点修复
+Clone Stamp	仿制图章
+Type tool	文字工具
+Gradient tool	渐变工具
+Shape tool	形状工具
+Eyedropper tool	吸管工具
+Marquee / cycle shape	选框/切换形状
+Magic	魔棒/对象选择
+Lasso / cycle mode	套索/切换模式
+Blur / Smudge / Liquify	模糊/涂抹/液化
+Crop tool	裁剪工具
+Swap foreground/background	交换前景色与背景色
+Reset colors	重置颜色
+Cycle tool mode	切换工具模式
+Temporary Hand tool (hold)	临时抓手工具（按住）
+Delete selection / layer / effect / lasso point	删除选区/图层/效果/套索点
+Apply current canvas operation	应用当前画布操作
+Cancel current canvas operation	取消当前画布操作
+Decrease brush size	减小画笔大小
+Increase brush size	增大画笔大小
+Decrease brush hardness	降低画笔硬度
+Increase brush hardness	提高画笔硬度
+Previous blend mode	上一个混合模式
+Next blend mode	下一个混合模式
+Cycle shape kind	切换形状类型
+Left	左
+Right	右
+Up	上
+Down	下
+Finish editing text	完成文字编辑
+Text Editing	文字编辑
+Decrease tracking	减小字距
+Increase tracking	增大字距
+Decrease leading	减小行距
+Increase leading	增大行距
+Toggle Levels preview	切换色阶预览
+Choose a single key with optional modifiers.	请选择一个按键，可搭配修饰键。
+Text-editing shortcuts need Command, Option, or Control so they do not replace normal typing.	文字编辑快捷键须包含 Command、Option 或 Control，以免影响正常输入。
+Click a shortcut, then press its new key combination, or ⊗ to remove it. Changes apply when you save.	点击快捷键后按下新的组合键；点 ⊗ 可移除。保存后生效。
+Search shortcuts	搜索快捷键
+Remove this shortcut	移除此快捷键
+Contextual keys & mouse gestures	情境快捷键与鼠标手势
+Restore Defaults	恢复默认设置
+Cancel	取消
+Press keys…	请按下组合键…
+Press a shortcut	按下快捷键
+Click the canvas to sample	点击画布取样
+Saturation and brightness	饱和度与亮度
+Hue	色相
+New color	新颜色
+Hex	十六进制
+Hex color	十六进制颜色
+Red	红
+Green	绿
+Blue	蓝
+Navigator	导航器
+Click or drag to move the view	点击或拖动以移动视图
+Pan	平移
+Zoom	缩放
+Zoom percentage	缩放百分比
+Zoom percentage (0.1–3200%). Press Return to apply.	缩放百分比（0.1–3200%），按回车应用。
+Transparent	透明
+Top left	左上
+Top center	上中
+Top right	右上
+Middle left	左中
+Center	居中
+Middle right	右中
+Bottom left	左下
+Bottom center	下中
+Bottom right	右下
+Black	黑色
+Foreground	前景色
+White	白色
+Background	背景
+Units	单位
+Width	宽度
+Height	高度
+Relative to current dimensions	相对于当前尺寸
+Lock original aspect ratio	锁定原始宽高比
+Anchor	定位点
+Selected	已选择
+Keeps this point fixed. Artwork is not scaled; cropped content remains outside the canvas.	固定此点，不缩放图像；裁去的内容仍保留在画布外。
+Canvas extension	扩展画布
+Custom	自定义
+Extension color	扩展区域颜色
+Extension Color	扩展区域颜色
+Color for the added canvas	新增画布的颜色
+Reading the file to see what needs converting.	正在读取文件并检查需要转换的内容。
+Compositor will convert these Photoshop features. Nothing is applied until you continue.	以下 Photoshop 功能需要转换，点击继续后才会应用。
+Reading the Photoshop file…	正在读取 Photoshop 文件…
+Exposure	曝光
+Offset	偏移
+Gamma	伽马
+Reds	红色
+Yellows	黄色
+Greens	绿色
+Cyans	青色
+Blues	蓝色
+Magentas	洋红色
+Tint	色调
+Color the result while keeping its tones, for a sepia or a cyanotype	保留明暗层次并着色，可制作棕褐色或蓝晒效果
+Saturation	饱和度
+Shadows	阴影
+Cyan / Red	青色/红色
+Magenta / Green	洋红色/绿色
+Yellow / Blue	黄色/蓝色
+Midtones	中间调
+Highlights	高光
+Preserve Luminosity	保留明度
+Put each pixel's brightness back afterwards, so only the color moves	保持各像素原来的亮度，只改变颜色
+Amount	数量
+Size	大小
+Roughness	粗糙度
+Hide the background behind a layer mask, keeping the foreground subjects. The pixels stay, so the background can be painted back at any time.	用图层蒙版隐藏背景并保留主体。原像素仍保留，随时可以在蒙版上绘制来恢复背景。
+Quality	质量
+Basic is quick; Advanced refines the mask against the layer's own detail, for hair and fur	基础模式较快；高级模式结合图像细节优化毛发等边缘
+Refine	优化边缘
+Pull the mask onto the image's own edges, which recovers hair and fur	让蒙版贴合图像边缘，恢复毛发细节
+Contrast	对比度
+Clear the haze that leaves background showing through thin areas	清除薄弱区域透出的背景残影
+Shift Edge	移动边缘
+Shrink the mask to drop the rim of background color around the subject, or grow it	收缩蒙版以去掉主体边缘的背景杂色，也可向外扩展
+Fill the selection using surrounding pixels from this layer.	用当前图层周围的像素填充选区。
+Radius	半径
+Preserve Transparency	保留透明度
+Blur only the colors, keeping the layer's outline and transparency as they are	只模糊颜色，保持图层轮廓与透明度
+Click and drag two points on canvas	在画布上拖出两个端点
+Shape	形状
+Linear	线性
+Radial	径向
+Linear blurs along the line; Radial keeps the start sharp and blurs outwards	线性沿直线模糊；径向保持起点清晰，向外逐渐模糊
+From	起点
+The blur where the line starts	起点的模糊程度
+To	终点
+The blur where the line ends, and past it	终点及其外侧的模糊程度
+Swap From and To: blur the start and sharpen toward the end	交换起点与终点：起点模糊，向终点逐渐清晰
+Angle	角度
+Distance	距离
+Distribution	分布
+Uniform	均匀
+Gaussian	高斯
+Monochromatic	单色
+Color	颜色
+Choose the vignette color	选择暗角颜色
+Blend the chosen color into the edges while keeping the center unchanged	将所选颜色混入边缘，保持中心不变
+Midpoint	中点
+Roundness	圆度
+Protect bright areas near the edge	保护边缘附近的明亮区域
+Remove Distortion	移除畸变
+Positive straightens lines that bow outward (barrel); negative, lines that bow inward (pincushion).	正值校正向外弯曲的桶形畸变，负值校正向内弯曲的枕形畸变。
+Preview	预览
+Limited to the selection	仅应用于选区
+Applying…	正在应用…
+Style	样式
+Pixel Size	像素大小
+Text Size	文字大小
+Cell Size	单元大小
+Characters	字符
+Tones	色调级数
+Diffusion	扩散
+Density	密度
+Colors	颜色
+Dark	暗部
+Choose the dark color	选择暗部颜色
+Light	光线
+Choose the light color	选择亮部颜色
+Pixel Shape	像素形状
+Light on Dark	深底亮色
+Line Spacing	行间距
+Thickness	粗细
+Glow	辉光
+Dots	点状
+Displace	位移
+Smoothness	平滑度
+Threshold	阈值
+Wobble	波动
+Color Split	色彩分离
+Black Level	黑色电平
+Choose the screen's color	选择屏幕颜色
+Choose the lines' color	选择线条颜色
+Reverse	反向
+Swap foreground and background (X)	交换前景色与背景色（X）
+Swap colors	交换颜色
+Default colors (D)	默认颜色（D）
+Default colors	默认颜色
+Mask background	蒙版背景色
+Mask foreground	蒙版前景色
+Black · Hide	黑色 · 隐藏
+White · Reveal	白色 · 显示
+Background color	背景色
+Foreground color	前景色
+Importing…	正在导入…
+Temperature	色温
+Boost	色调增强
+Noise Reduction	降噪
+Smooths grain, at the cost of fine detail	平滑颗粒，但会损失部分细节
+Not available for this camera	此相机不支持该功能
+Lens Correction	镜头校正
+Removes the lens's distortion and vignetting	消除镜头畸变和暗角
+This file has no lens profile	此文件没有镜头配置文件
+Highlight Recovery	高光恢复
+Brings back detail in bright areas the camera partly clipped	恢复部分通道过曝区域中的亮部细节
+Reset	重置
+Camera Raw	RAW 调色
+Import, then open the Camera Raw Filter	导入后打开 RAW 调色面板
+Import	导入
+Stroke	描边
+Position	位置
+Outside	外部
+Inside	内部
+Opacity	不透明度
+Drop Shadow	投影
+Blur	模糊
+Color Overlay	颜色叠加
+Inner Shadow	内阴影
+Outer Glow	外发光
+Inner Glow	内发光
+No layers yet	暂无图层
+Create a canvas or import an image.	新建画布或导入图片。
+Import an image or add a blank layer.	导入图片或添加空白图层。
+New blank layer	新建空白图层
+Group selected layers	将所选图层编组
+New folder	新建图层组
+New adjustment layer	新建调整图层
+Add layer effect	添加图层效果
+Layer effects	图层效果
+Delete selected effect	删除所选效果
+Delete layer mask	删除图层蒙版
+Delete selected layers	删除所选图层
+Delete selected layer	删除所选图层
+Type	文字
+Font face, including bold and italic variants	字体样式，包括粗体和斜体
+Text color	文字颜色
+Tracking	字距
+Leading	行距
+Auto	自动
+Line height, baseline to baseline. Empty or 0 is Auto: 120% of the font size.	两行基线之间的距离。留空或输入 0 为自动，使用字号的 120%。
+Done	完成
+Edit Text	编辑文字
+Font	字体
+(Multiple)	（多种）
+Shift-click adds a color, Option-click takes one away.	按住 Shift 点击添加颜色，按住 Option 点击移除颜色。
+Click the image to pick the color to select.	点击图像，拾取要选择的颜色。
+Fuzziness	颜色容差
+How far a color may be from the picked ones and still be selected	允许所选颜色与取样颜色之间的差异程度
+Select everything except those colors, such as all but a green screen	选择这些颜色之外的区域，例如排除绿幕
+Click the image to select that color	点击图像选择该颜色
+Click the image to add that color to the selection	点击图像将该颜色加入选区
+Click the image to take that color out of the selection	点击图像将该颜色移出选区
+Fill color	填充颜色
+Shapes fill with the foreground color; click to change it	形状使用前景色填充，点击更改
+Smooth Corners	平滑圆角
+Range	范围
+Lightness	明度
+Apply outside this range instead	应用于此范围之外
+Colorize	着色
+Targeted adjustment	目标调整
+Transform Mask	变换蒙版
+Transform	变换
+Auto Select	自动选择
+Show Controls	显示控件
+Scale	缩放
+Sampling	重采样方式
+Flip H	水平翻转
+Flip V	垂直翻转
+Apply	应用
+Curve	曲线
+Channel	通道
+Lights	亮调
+Darks	暗调
+Preset	预设
+Medium Contrast	中等对比度
+Strong Contrast	强对比度
+Refine Saturation	优化饱和度
+Targeted Adjustment	目标调整
+Mixer	混色器
+Component	分量
+Luminance	明亮度
+Hue Shift	色相偏移
+Saturation Shift	饱和度偏移
+Luminance Shift	明亮度偏移
+Hue Range	色相范围
+Saturation Range	饱和度范围
+Luminance Range	明亮度范围
+Visualize Range	显示影响范围
+Grading	色彩分级
+Blending	混合
+Balance	平衡
+Upright	透视校正
+Draw Guides	绘制参考线
+Projection	投影方式
+Vertical	垂直
+Horizontal	水平
+Rotate	旋转
+Aspect	宽高比例
+Offset X	水平偏移
+Offset Y	垂直偏移
+Constrain Crop	约束裁剪
+Process	处理版本
+Red Primary	红原色
+Green Primary	绿原色
+Blue Primary	蓝原色
+Loading histogram…	正在载入直方图…
+Input black	输入黑场
+Input white	输入白场
+Output black	输出黑场
+Output white	输出白场
+Sample	取样
+Gradient	渐变
+Mask	蒙版
+Horizontal ruler	水平标尺
+Vertical ruler	垂直标尺
+Crop	裁剪
+Ratio	比例
+Free	自由
+Original	原始
+Apply Crop	应用裁剪
+Histogram	直方图
+Vectorscope	矢量示波器
+Shadow Clipping Indicator	阴影溢出指示
+Highlight Clipping Indicator	高光溢出指示
+Effects	效果
+Color Mixer	混色器
+Color Grading	色彩分级
+Detail	细节
+Optics	光学
+Geometry	几何
+Calibration	校准
+Whites	白色色阶
+Blacks	黑色色阶
+White Balance	白平衡
+White Balance Selector	白平衡吸管
+Vibrance	自然饱和度
+Texture	纹理
+Clarity	清晰度
+Dehaze	去雾
+Spread	扩展
+Warmth	暖色
+Vignette	暗角
+Grain	颗粒
+Add layer mask	添加图层蒙版
+Stop viewing the mask	停止单独查看蒙版
+Layer Mask	图层蒙版
+Hide the gamut warning	隐藏色域警告
+Stop proofing	关闭校样
+CMYK Proof	CMYK 校样
+Format	格式
+Depth	位深
+16 bits per channel	每通道 16 位
+Page	页面
+Export Background	导出背景
+Color that fills transparent areas	用于填充透明区域的颜色
+Brighter than white kept · Transparency kept	保留超白亮度 · 保留透明度
+Transparency kept · sRGB	保留透明度 · sRGB
+Updating…	正在更新…
+Export	导出
+More	更多
+More formats	更多格式
+Search commands and tools	搜索命令与工具
+No commands match	没有匹配的命令
+File	文件
+Edit	编辑
+View	视图
+Window	窗口
+Help	帮助
+Services	服务
+Move / Transform	移动/变换
+Rectangular Marquee	矩形选框
+Elliptical Marquee	椭圆选框
+Lasso	套索
+Polygonal Lasso	多边形套索
+Magic Wand	魔棒
+Object Selection	对象选择
+Brush	画笔
+Spot Healing Brush	污点修复画笔
+Liquify	液化
+Smudge	涂抹
+Rectangle	矩形
+Ellipse	椭圆
+Line	直线
+Hand	抓手
+Grid Color	网格颜色
+Choose a custom grid color	选择自定义网格颜色
+Gridline every	网格线间距
+Subdivisions	子网格数
+Blend mode	混合模式
+Marquee	选框
+Mode	模式
+Anti-alias	消除锯齿
+Empty selection	空选区
+Tolerance	容差
+Sample Size	取样大小
+This Layer	当前图层
+All Layers	所有图层
+Contiguous	连续
+Edge	边缘
+Project tabs	项目标签页
+New	新建
+Drop to open in a new canvas	拖到此处，在新画布中打开
+Drop into new canvas	拖入新画布
+Unsaved changes	未保存的更改
+Open in a new project tab	在新项目标签页中打开
+Pixels	像素
+Inches	英寸
+Centimeters	厘米
+Millimeters	毫米
+Preset sizes	预设尺寸
+Open project	打开项目
+Import image	导入图片
+Create canvas	创建画布
+Input	输入
+Instagram Square	Instagram 方形
+Instagram Portrait	Instagram 竖图
+Instagram Story	Instagram 快拍
+YouTube Thumb	YouTube 缩略图
+Blend	混合
+Opacity percent	不透明度百分比
+Rename	重命名
+Delete Mask	删除蒙版
+Delete Selected Layers	删除所选图层
+Convert to 16-Bit	转换为 16 位
+Convert to 8-Bit	转换为 8 位
+Add Mask	添加蒙版
+Reveal All (White)	显示全部（白色）
+Hide All (Black)	隐藏全部（黑色）
+Enable Mask	启用蒙版
+Disable Mask	停用蒙版
+Link Mask	链接蒙版
+Unlink Mask	取消链接蒙版
+Duplicate Layers	复制多个图层
+Move Layers	移动多个图层
+Move Layer	移动图层
+Release clipping mask	释放剪贴蒙版
+Create clipping mask	创建剪贴蒙版
+Show mask alone	单独显示蒙版
+Linked	已链接
+Editable text	可编辑文字
+Editable text layer	可编辑文字图层
+Select image pixels	选择图像像素
+Text · Double-click to edit	文字 · 双击编辑
+Adjustment · Double-click to edit	调整 · 双击编辑
+Folder	图层组
+HDR layer: keeps light brighter than white, shown as white	HDR 图层：保留超白亮度，预览为白色
+16-bit layer: keeps 16 bits a channel	16 位图层：保留每通道 16 位精度
+Missing source	源文件缺失
+16-Bit	16 位
+Click to add a point. Drag to adjust.	点击添加控制点，拖动调整。
+Remove point	移除控制点
+Reset curve	重置曲线
+Percent	百分比
+Lock aspect ratio	锁定宽高比
+Resolution	分辨率
+Resample	重新采样
+Resizes layer pixels and applies existing transforms. Undo restores the originals.	调整图层像素大小并应用现有变换，撤销可恢复原始状态。
+Only print dimensions and resolution change. Pixels stay unchanged.	仅改变打印尺寸和分辨率，不改变像素。
+Resize	调整大小
+Sharpening	锐化
+Masking	蒙版
+Luminance Detail	明亮度细节
+Luminance Contrast	明亮度对比度
+Color Detail	颜色细节
+Color Smoothness	颜色平滑度
+Remove Chromatic Aberration	移除色差
+Enable Lens Profile Corrections	启用镜头配置文件校正
+No lens metadata on this layer. Profile sliders set generic correction strength.	此图层没有镜头元数据，滑块仅设置通用校正强度。
+Distortion	畸变
+Vignetting	暗角校正
+Manual	手动
+Defringe	去边
+Purple Amount	紫色数量
+Purple Hue	紫色色相
+Green Amount	绿色数量
+Green Hue	绿色色相
+Low	下限
+Purple	紫色
+High	上限
+Based On	依据
+Trim Away	修剪边缘
+Top	顶部
+Bottom	底部
+Smear	模糊/涂抹
+Aligned	对齐
+Hardness	硬度
+Strength	强度
+Smoothing	平滑
+Paint	绘画
+Option-click to set the source	按住 Option 点击设置取样源
+Revert	恢复磁盘版本
+Keep Mine	保留当前版本
+Couldn’t export PNG	无法导出 PNG
+Couldn’t export	无法导出
+Couldn’t change canvas size	无法更改画布大小
+Couldn’t resize the image	无法调整图像大小
+Couldn’t trim image	无法修剪图像
+Save Project As	项目另存为
+Save Project	保存项目
+Couldn’t save the project	无法保存项目
+Couldn’t open the project	无法打开项目
+Your changes will be lost if you don’t save them.	如果不保存，更改将丢失。
+Don’t Save	不保存
+Open one project at a time	请每次打开一个项目
+Dropped	拖入的图片
+Canvas Extension	画布扩展
+The image could not be read. It may be damaged or unavailable.	无法读取图片，文件可能已损坏或无法访问。
+The canvas could not be rendered. Try a smaller canvas.	无法渲染画布，请尝试减小画布尺寸。
+The image could not be encoded.	无法编码图片。
+CMYK Profiles	CMYK 配置文件
+Embedded CMYK Profile	嵌入的 CMYK 配置文件
+Generic CMYK Profile	通用 CMYK 配置文件
+That profile isn’t a CMYK output profile.	此文件不是 CMYK 输出配置文件。
+Transform Layers	变换多个图层
+Reorder Layers	重新排列图层
+Import Photoshop File	导入 Photoshop 文件
+Import Image	导入图片
+New Text Layer	新建文字图层
+Fill Text	填充文字
+Off	关闭
+Guided	引导式
+Perspective	透视
+Rectilinear	直线投影
+Version 1	版本 1
+Version 2	版本 2
+Version 3	版本 3
+Version 4	版本 4
+Version 5	版本 5
+Version 6	版本 6
+Point Sample	点取样
+3 by 3 Average	3 × 3 平均
+5 by 5 Average	5 × 5 平均
+Parametric	参数
+Point	点曲线
+Point Color	点颜色
+Three-Way	三向
+Global	全局
+Oranges	橙色
+Aquas	浅绿色
+Purples	紫色
+Flip Horizontal	水平翻转
+Flip Vertical	垂直翻转
+Fill Mask	填充蒙版
+Fill	填充
+Clear	清除
+Duplicate Pixels	复制像素
+Move Pixels	移动像素
+Paint Mask	绘制蒙版
+Erase	擦除
+Brush Stroke	画笔笔触
+Normal	正常
+Darken	变暗
+Multiply	正片叠底
+Color Burn	颜色加深
+Linear Burn	线性加深
+Lighten	变亮
+Screen	滤色
+Color Dodge	颜色减淡
+Linear Dodge (Add)	线性减淡（添加）
+Overlay	叠加
+Soft Light	柔光
+Hard Light	强光
+Vivid Light	亮光
+Linear Light	线性光
+Pin Light	点光
+Hard Mix	实色混合
+Difference	差值
+Exclusion	排除
+Subtract	减去
+Divide	划分
+Luminosity	明度
+Layer Opacity	图层不透明度
+Layer Blend Mode	图层混合模式
+Nearest	邻近
+Smooth	平滑
+High quality	高质量
+New Folder	新建图层组
+Distort	扭曲
+Distort Layers	扭曲多个图层
+Gray	灰色
+Color + neutral midtones	彩色与中性中间调
+Bloom	泛光
+Halation	红色光晕
+Highlight Priority	高光优先
+Color Priority	颜色优先
+Paint Overlay	绘画叠加
+Adjustment input	调整输入
+Copy Layers from Project	从项目复制图层
+This layer supplies a live mask	此图层用作实时蒙版
+These layers supply live masks	这些图层用作实时蒙版
+Bake and Delete	应用效果并删除
+Remove Links and Delete	移除链接并删除
+Master	全图
+Add	添加
+Remove	移除
+Content-Aware	内容识别
+Create Texture	创建纹理
+Proximity Match	近似匹配
+Layer Effects	图层效果
+Foreground to Background	前景色到背景色
+Foreground to Transparent	前景色到透明
+Gradient Mask	渐变蒙版
+Transparent Pixels	透明像素
+Top Left Pixel Color	左上角像素颜色
+Bottom Right Pixel Color	右下角像素颜色
+No content remained after trimming.	修剪后没有剩余内容。
+The trimmed image dimensions are invalid.	修剪后的图像尺寸无效。
+Pasted Image	粘贴的图片
+Halftone Dots	半调圆点
+Halftone Lines	半调线条
+Halftone Diamonds	半调菱形
+Mac Patterns	Mac 图案
+Square	方形
+Dot	圆点
+Black & White	黑白
+Two Colors	双色
+Color Picker (Text Color)	拾色器（文字颜色）
+Color Picker (Background Color)	拾色器（背景色）
+Color Picker (Foreground Color)	拾色器（前景色）
+Color Picker (Gradient Map Highlights)	拾色器（渐变映射高光）
+Color Picker (Gradient Map Shadows)	拾色器（渐变映射阴影）
+Color Picker (Vignette Color)	拾色器（暗角颜色）
+Color Picker (Light Color)	拾色器（亮部颜色）
+Color Picker (Dark Color)	拾色器（暗部颜色）
+Gradient Map	渐变映射
+Add Noise	添加杂色
+Gaussian Blur	高斯模糊
+Motion Blur	动感模糊
+Color Balance	色彩平衡
+Reveal Selection	显示选区
+Hide Selection	隐藏选区
+Add Reveal-All Mask	添加显示全部蒙版
+Add Hide-All Mask	添加隐藏全部蒙版
+Disable Layer Mask	停用图层蒙版
+Enable Layer Mask	启用图层蒙版
+Copy Layer Mask	复制图层蒙版
+Replace Layer Mask	替换图层蒙版
+Unlink Layer Mask	取消链接图层蒙版
+Link Layer Mask	链接图层蒙版
+Distort Layer Mask	扭曲图层蒙版
+Transform Layer Mask	变换图层蒙版
+Light Gray	浅灰色
+Light Blue	浅蓝色
+Light Red	浅红色
+Medium Blue	中蓝色
+Yellow	黄色
+Magenta	洋红色
+Cyan	青色
+Lines	直线
+Dashed Lines	虚线
+Delete Guide	删除参考线
+New Guide	新建参考线
+Move Guide	移动参考线
+Load Mask Selection	载入蒙版选区
+Load Layer Selection	载入图层选区
+Wand	魔棒
+Object	对象
+Freehand	自由套索
+Polygonal	多边形
+Move Selection	移动选区
+Expand Selection	扩展选区
+Contract Selection	收缩选区
+Feather Selection	羽化选区
+Progressive Blur	渐进模糊
+Bloom / Glow	泛光/辉光
+Dither	抖动
+Scanlines	扫描线
+Tonal Contrast	色调对比度
+Camera Raw Filter	RAW 调色滤镜
+Remove Background	移除背景
+Basic	基础
+Advanced	高级
+Floating Selection	浮动选区
+Merge Group	合并图层组
+Merge Down	向下合并
+Canvas text	画布文字
+Move pixels	移动像素
+Sample color	取样颜色
+Zoom out	缩小
+Zoom in	放大
+Canvas	画布
+Tip	提示
+OK	确定
+Continue	继续
+Fit canvas in window	画布适合窗口
+Actual pixels	实际像素
+Drag an ellipse	拖出椭圆选区
+Drag a rectangle	拖出矩形选区
+Shift add	Shift 添加选区
+Option subtract	Option 减去选区
+Shift again mid-drag circle	拖动中再按 Shift 约束为正圆
+Shift again mid-drag square	拖动中再按 Shift 约束为正方形
+Drag inside to move	在选区内拖动以移动
+Delete clears	Delete 清除
+⌘D deselect	⌘D 取消选择
+⌘-drag moves pixels	⌘ 拖动移动像素
+Click an object to select its outline	点击对象以选择其轮廓
+Tab for Wand	Tab 切换魔棒
+Click to select similar colors	点击选择相似颜色
+Tab for Object	Tab 切换对象选择
+Drag to select	拖动选择
+⌥⌫/⌘⌫ fill	⌥⌫/⌘⌫ 填充
+Click corners	点击添加顶点
+Click start, double-click or Enter to close	点击起点、双击或按回车闭合
+Delete removes corner	Delete 删除顶点
+Escape cancel	Esc 取消
+Drag to erase	拖动擦除
+Drag to paint	拖动绘画
+[ ] size	[ ] 调整大小
+Shift-[ ] hardness	Shift-[ ] 调整硬度
+1–0 opacity	数字键 1–0 调整不透明度
+Space to pan	按住空格平移
+Drag to soften	拖动柔化
+Drag to smudge	拖动涂抹
+Drag to push pixels	拖动推移像素
+1–0 strength	数字键 1–0 调整强度
+Drag to clone	拖动仿制
+Drag over blemishes to heal	在瑕疵上拖动修复
+Drag a text box	拖出文本框
+Click text to edit	点击文字编辑
+Drag box handles to resize	拖动控制点调整文本框大小
+⌘Return finish	⌘ 回车完成
+Option from center	按住 Option 从中心绘制
+Shift-U or Tab for the next shape	Shift-U 或 Tab 切换形状
+Drag to draw	拖动绘制
+Drag ends to adjust	拖动端点调整
+Shift 45°	Shift 约束为 45°
+Enter apply	回车应用
+Drag to crop	拖动裁剪
+Drag to move	拖动移动
+Handles to resize	拖动控制点缩放
+Circle to rotate	拖动圆点旋转
+1–0 layer opacity	数字键 1–0 调整图层不透明度
+Drag to pan	拖动平移
+Pinch to zoom	双指捏合缩放
+No tool selected	尚未选择工具
+Press a tool's key to pick one	按工具快捷键选择工具
+Click to zoom in	点击放大
+Option-click to zoom out	Option 点击缩小
+Drag right or left to zoom smoothly	左右拖动连续缩放
+Text fields keep standard macOS editing keys. Dialogs share the Apply/Cancel assignments above. Numeric fields use Up/Down, with Shift for larger steps. Standard macOS commands include ⌘Q to quit and ⌃⌘F for full screen. The shortcut editor itself always uses Return to save and Esc to cancel when not recording.	文本框使用 macOS 标准编辑快捷键。对话框共用上方的应用/取消设置。数字框可用上下方向键调整，按住 Shift 增大步长。⌘Q 退出，⌃⌘F 全屏。快捷键编辑器未录制按键时，回车保存、Esc 取消。
+Option temporarily selects the eyedropper in painting tools. Shift constrains shapes/movement or adds to a selection; Option subtracts from selections or draws from center. Command-drag moves selected pixels; Command-Option-drag copies them. Option-drag duplicates layers/folders/effects; Option-click at a layer boundary toggles clipping. Command-click a thumbnail loads its selection. Control bypasses snapping. Right-drag adjusts brush size. Modifier-and-mouse gestures are fixed.	绘画时按住 Option 临时使用吸管。Shift 约束形状/移动或添加选区；Option 减去选区或从中心绘制。Command 拖动移动所选像素，Command-Option 拖动复制像素。Option 拖动复制图层、组或效果，Option 点击图层边界切换剪贴。Command 点击缩略图载入选区。Control 暂停吸附，右键拖动调整画笔大小。这些鼠标组合手势固定不变。
+Make each dithered pixel this many pixels across, for a chunky old-screen look	设置抖动像素块的宽度，模拟老式屏幕的大颗粒效果
+The height of each line of characters	每行字符的高度
+The characters to draw with, in any order: each spot gets the one whose ink best matches its tone	设置绘制字符；各位置会选用最符合其明暗的字符
+Tones per channel: 2 is pure black and white	每通道的色调级数；2 表示纯黑与纯白
+How much of each pixel's error spreads to its neighbors. Less gives flatter areas	像素误差向相邻像素扩散的程度；较低值产生更平坦的色块
+More ink (darker) or less before dithering	抖动前增加或减少墨量，即调整明暗
+Draw each chunky pixel as a solid square, or as a round dot like a dot-matrix screen	将像素块绘制为实心方块，或点阵屏幕般的圆点
+Draw the marks for the light tones on the dark color, like a glowing screen	在深色底上绘制亮调标记，模拟发光屏幕
+How far apart the screen's lines are	屏幕扫描线的间距
+How much of the gap a bright line fills; dimmer parts draw it thinner	亮线填充间距的比例；较暗处线条更细
+Light blooming around the lines, like a CRT's phosphors	扫描线周围的泛光，模拟 CRT 荧光粉
+Break the lines into beads where the picture is darker than this, blending into solid lines where it's brighter	较暗处将线条分成点，较亮处融合为实线
+Lift the lines where the picture is bright, or lower them when negative, so they swell into its shapes	亮处抬高线条，负值则降低，使线条随图像形状起伏
+How far the brightness is smoothed before it displaces the lines, from sharp ridges to rounded hills	线条位移前的亮度平滑程度，使尖锐起伏变为圆滑起伏
+Draw no line where the picture is darker than this, leaving the screen dark	低于此亮度时不绘制线条，保持黑暗
+Make the lines waver sideways down the screen, like a CRT losing sync	让线条左右波动，模拟 CRT 失去同步
+Move the red and blue apart, for colored fringes on the lines	分离红蓝通道，在扫描线上产生彩色边缘
+Darker or lighter before the lines are drawn	绘制线条前调整明暗
+How bright the lines are where the picture is black, so they show even over black	黑色区域的线条亮度，使线条在黑底上仍可见
+Shift-U (or Tab) steps through Rectangle, Ellipse and Line	Shift-U 或 Tab 依次切换矩形、椭圆和直线
+Round the rectangle's corners by this many pixels; 0 keeps them square	设置矩形圆角半径（像素）；0 为直角
+Set a radius above 0 to use smooth corners.	半径大于 0 时可使用平滑圆角。
+Use smooth squircle corners at 60% smoothing, matching Figma's iOS setting	使用 60% 平滑度的超椭圆圆角，与 Figma 的 iOS 设置一致
+Targeted adjustment: drag on the image to change that color's saturation, or its hue with Command held	目标调整：在图像上拖动改变该颜色的饱和度，按住 Command 则改变色相
+Select layers by clicking the canvas. Hold Command to turn it the other way while you click.	点击画布选择图层；按住 Command 点击可临时反转此设置。
+Show the transform box and handles (⌘H). When hidden, drag anywhere to move the layer.	显示变换框和控制点（⌘H）；隐藏后可在任意位置拖动图层。
+Lock aspect ratio. Hold Shift while dragging a handle to turn it the other way.	锁定宽高比；拖动控制点时按住 Shift 可临时反转。
+Scale width and height together, about the center	以中心为基准，同时缩放宽度和高度
+1 more tab	另有 1 个标签页
+Parametric lifts tonal regions. Point places anchors on the curve.	参数曲线按明暗区域调整，点曲线通过控制点调整。
+RGB changes brightness. Red, green, and blue also shift the color.	RGB 通道调整亮度；红、绿、蓝通道还会改变颜色。
+Drag up or down to lift or lower those tones. Drag a divider along the bottom to change which tones each region covers.	上下拖动以提亮或压暗该区域；拖动底部分隔线调整各区域范围。
+Drag a point. Click to add one. Double-click a point to remove it.	拖动控制点调整，点击添加控制点，双击删除。
+Lifts or lowers the brightest tones.	提亮或压暗最亮的色调。
+Lifts or lowers the light tones.	提亮或压暗亮调。
+Lifts or lowers the dark tones.	提亮或压暗暗调。
+Lifts or lowers the darkest tones.	提亮或压暗最暗的色调。
+Input and output of the selected curve point.	所选曲线控制点的输入和输出值。
+Replaces this curve with a straight line or a contrast curve.	将当前曲线替换为直线或对比度曲线。
+How much the curve also changes color strength. Zero matches Photoshop; lower keeps it to brightness, higher adds more color.	曲线对色彩强度的影响程度。0 对应 Photoshop 效果；较低值侧重亮度，较高值增强色彩。
+Drag on the picture to move the curve for the tone under the pointer.	在图像上拖动，调整指针处色调对应的曲线。
+HSL lists every color. Color edits one family. Point Color adjusts a color you pick.	HSL 列出所有颜色；颜色模式调整单个色系；点颜色调整拾取的颜色。
+Hue shifts the color, Saturation its strength, and Luminance its brightness.	色相改变颜色，饱和度改变鲜艳程度，明亮度改变亮暗。
+Shifts the selected color family around the wheel.	沿色轮偏移所选色系。
+Makes the selected color family stronger or quieter.	增强或减弱所选色系。
+Makes the selected color family lighter or darker.	提亮或压暗所选色系。
+Drag a color in the picture. Nearby color families move together.	在图像中的某种颜色上拖动，相近色系一起变化。
+Click the picture to save a color. Up to eight colors.	点击图像保存颜色，最多 8 种。
+Select this picked color.	选择此取样颜色。
+Shifts the picked color around the color wheel.	沿色轮偏移取样颜色。
+Makes the picked color stronger or quieter.	增强或减弱取样颜色。
+Makes the picked color lighter or darker.	提亮或压暗取样颜色。
+How far in hue the adjustment reaches.	调整影响的色相范围。
+How far in saturation the adjustment reaches.	调整影响的饱和度范围。
+How far in brightness the adjustment reaches.	调整影响的亮度范围。
+Dims the picture outside this color's range. It is not kept when you press OK.	将此颜色范围外的图像变暗以辅助预览，确定后不保留此显示效果。
+Three-Way shows shadows, midtones, and highlights. The other choices show one wheel.	三向模式同时显示阴影、中间调和高光色轮；其他模式显示单个色轮。
+Controls how much the three tonal wheels overlap.	控制三个明暗色轮影响范围的重叠程度。
+Shifts the wheels toward shadows or highlights.	将色轮的影响偏向阴影或高光。
+Drag inside the wheel. Angle sets hue, distance sets saturation.	在色轮中拖动；角度决定色相，距中心的距离决定饱和度。
+Hue and saturation of this wheel.	此色轮的色相与饱和度。
+Brightness added by this wheel.	此色轮增加的亮度。
+Drag to set hue and saturation. Double-click to reset this wheel.	拖动设置色相和饱和度，双击重置色轮。
+Off leaves the picture as it is. Guided straightens from lines you draw on the picture.	关闭时保持原图；引导式根据绘制的参考线校正图像。
+Draw two or more lines on the preview that should be level or vertical.	在预览中绘制至少两条应当水平或垂直的线。
+Drag on the layer to place a guide. Draw at least two lines.	在图层上拖动放置参考线，至少绘制两条。
+Remove every guide line.	移除所有参考线。
+Perspective allows stronger keystone. Rectilinear keeps the warp gentler.	透视模式允许较强的梯形校正，直线投影模式变形较温和。
+Straightens vertical lines toward the center.	将垂直线向中心方向校正。
+Straightens horizontal lines toward the center.	将水平线向中心方向校正。
+Rotates the picture around its center.	绕图像中心旋转。
+Stretches width relative to height.	相对于高度调整宽度。
+Zooms the transformed picture within the frame.	在画框内缩放变换后的图像。
+Moves the picture left or right.	向左或向右移动图像。
+Moves the picture up or down.	向上或向下移动图像。
+Crops empty edges after the transform and fits the result back into the frame.	裁去变换后的空白边缘，并使结果填满画框。
+Chooses how strongly the calibration sliders below are applied. Version 6 is the current default.	选择下方校准滑块的应用强度，当前默认版本为 6。
+Adds green or magenta to the darkest tones.	向最暗色调中加入绿色或洋红色。
+Shifts how red is interpreted.	改变红原色的色相。
+Strengthens or weakens the red primary.	增强或减弱红原色。
+Shifts how green is interpreted.	改变绿原色的色相。
+Strengthens or weakens the green primary.	增强或减弱绿原色。
+Shifts how blue is interpreted.	改变蓝原色的色相。
+Strengthens or weakens the blue primary.	增强或减弱蓝原色。
+Underlying pixels	下方像素
+Original pixels	原始像素
+alpha-weighted histogram	按透明度加权的直方图
+selection and alpha-weighted histogram	按选区和透明度加权的直方图
+Linear histogram with automatic vertical scaling. Tall spikes may extend beyond the graph; all tones from 0 to 255 remain included.	线性直方图自动调整纵向比例。峰值可能超出图表，但仍包含 0–255 的全部色调。
+Linear runs along the line; Radial spreads out from the start point	线性沿直线渐变，径向从起点向外扩散
+Press 1–9 for 10–90%, 0 for 100%	按 1–9 设置 10–90%，按 0 设置 100%
+Tones from black on the left to white on the right: blacks, shadows, midtones, highlights, whites. Control-click to show the vectorscope.	从左侧黑到右侧白，依次为黑色色阶、阴影、中间调、高光、白色色阶。Control 点击切换矢量示波器。
+Hue around the wheel, saturation outward from the center. Control-click to show the histogram.	环向表示色相，离中心越远饱和度越高。Control 点击切换直方图。
+Red, green, and blue of the pixel under the pointer.	指针所在像素的红、绿、蓝数值。
+Show clipped shadows in blue on the preview.	在预览中用蓝色标出丢失细节的阴影。
+Show clipped highlights in red on the preview.	在预览中用红色标出过曝高光。
+Brightens or darkens the whole picture, in stops of light. Hold Option to see clipped highlights.	以曝光档数调整整张照片明暗；按住 Option 查看过曝高光。
+Makes light and dark tones more or less different, mostly around the middle.	增强或减弱明暗差异，主要作用于中间调。
+Adjusts the bright parts of the picture. Hold Option to see clipped highlights.	调整亮部；按住 Option 查看过曝高光。
+Adjusts the dark parts of the picture. Hold Option to see clipped shadows.	调整暗部；按住 Option 查看丢失细节的阴影。
+Sets the brightest point. Hold Option to see clipped highlights.	设置最亮点；按住 Option 查看过曝高光。
+Sets the darkest point. Hold Option to see clipped shadows.	设置最暗点；按住 Option 查看丢失细节的阴影。
+Auto balances the average color. Custom follows Temperature and Tint.	自动模式平衡平均颜色，自定义模式使用色温和色调设置。
+Click a pixel that should be neutral.	点击本应为中性灰或白色的像素。
+Click the original layer. Click the eyedropper again to stop.	点击原始图层取样，再次点击吸管停止取样。
+Shifts the picture from blue to yellow.	使图像从偏蓝向偏黄变化。
+Shifts the picture from green to mauve.	使图像从偏绿向偏洋红变化。
+Strengthens quiet colors more than colors that are already strong, and protects skin tones.	优先增强较淡的颜色，同时保护肤色。
+Strengthens or weakens every color by the same amount.	以相同幅度增强或减弱所有颜色。
+Adds or softens small detail.	增强或柔化细小纹理。
+Adds or softens contrast along broader shapes.	增强或柔化较大轮廓的局部对比度。
+Clears haze when raised, and adds haze when lowered.	提高数值去雾，降低数值增加雾感。
+Spreads a glow from the bright areas.	让亮部向外散发辉光。
+Diffusion is soft and wide, Bloom is tighter, and Halation is a red fringe.	扩散柔和且范围大，泛光更集中，红色光晕产生红色边缘。
+Chooses how bright an area must be to glow. Has no effect until Glow is raised.	设置产生辉光的最低亮度；辉光大于 0 时生效。
+Sets how far the glow reaches. Has no effect until Glow is raised.	设置辉光范围；辉光大于 0 时生效。
+Shifts the glow from cool to warm. Halation stays red. Has no effect until Glow is raised.	调整辉光冷暖，红色光晕保持红色；辉光大于 0 时生效。
+Darkens or lightens the edges. The center does not change.	压暗或提亮边缘，中心保持不变。
+Highlight Priority protects bright edges. Color Priority also reduces color. Paint Overlay covers the edges evenly.	高光优先保护明亮边缘，颜色优先也降低色彩，绘画叠加均匀覆盖边缘。
+Sets where the vignette begins, from the center outward.	设置暗角从中心向外开始的位置。
+Makes the vignette rounder or more square.	让暗角更圆或更接近方形。
+Softens the edge of the vignette.	柔化暗角边缘。
+Protects bright pixels while a dark vignette is applied. Used by Highlight Priority.	应用暗角时保护明亮像素，在高光优先模式下生效。
+Adds film grain, strongest in the middle tones.	添加胶片颗粒，中间调效果最强。
+Makes the grain coarser or finer.	调整颗粒粗细。
+Makes the grain smoother or more uneven.	调整颗粒的均匀程度。
+Add layer mask (Option-click for a black mask)	添加图层蒙版（Option 点击添加黑色蒙版）
+Add layer mask revealing the selection (Option-click to hide it)	添加显示选区的蒙版（Option 点击隐藏选区）
+Show the image again (or Option-click the mask thumbnail)	重新显示图像，或 Option 点击蒙版缩略图
+Stop marking colors the profile can't print	停止标记配置文件无法打印的颜色
+Show the document's own colors again	恢复显示文档原本的颜色
+Show the whole image (⌘0)	显示完整图像（⌘0）
+Drag or scroll to move around; double-click switches between Fit and 100%	拖动或滚动平移；双击切换适合窗口和 100%
+Width in pixels; the height follows, keeping the proportions	宽度（像素）；高度按比例同步变化
+Height in pixels; the width follows, keeping the proportions	高度（像素）；宽度按比例同步变化
+Scale the export: the document stays as it is	仅缩放导出结果，原文档保持不变
+Keep the 16-bit layers' full precision, in a file about twice the size	保留 16 位图层的完整精度，文件大小约为两倍
+Use a CMYK ICC profile, such as the one your printer gave you	使用 CMYK ICC 配置文件，例如印刷厂提供的文件
+CMYK writes a printer's inks through the profile in View › CMYK › Profile	CMYK 通过“视图 › CMYK › 颜色配置文件”中的配置输出印刷油墨颜色
+Add Layer Mask from Selection	从选区添加图层蒙版
+Add Layer Mask	添加图层蒙版
+Add Layer Mask Hiding Selection	添加隐藏选区的图层蒙版
+Add Layer Mask (Hide All)	添加图层蒙版（隐藏全部）
+Press M to switch between Rectangle and Ellipse	按 M 切换矩形和椭圆选框
+Press Tab to switch between Wand and Object	按 Tab 切换魔棒和对象选择
+Press L to switch between Freehand and Polygonal	按 L 切换自由套索和多边形套索
+Hold Shift to add or Option to subtract for one outline	按住 Shift 添加选区，按住 Option 减去选区
+Smooth the detected object outline; turn off for the raw pixel mask	平滑检测到的对象轮廓；关闭后使用原始像素蒙版
+Smooth selection edges; turn off for hard pixel edges	平滑选区边缘；关闭后使用硬像素边缘
+Fade the edge of the selection by this many pixels	按指定像素数柔化选区边缘
+How far each color channel (0–255) can differ from the clicked color and still be selected	允许各颜色通道与点击颜色之间的差值（0–255）
+Match the clicked pixel, or the average of the pixels around it	匹配点击像素，或其周围像素的平均值
+Read colors from the active layer only, or from every visible layer as shown	仅从当前图层取色，或从所有可见图层的合成结果取色
+Select only similar pixels connected to the one you click; off selects them everywhere	仅选择与点击处相连的相似像素；关闭后选择所有相似像素
+Analyze the active layer only, or every visible layer as shown	仅分析当前图层，或所有可见图层的合成结果
+Positive values tighten the detected mask inward; negative values expand it outward	正值向内收缩蒙版，负值向外扩展
+Drop images here for new tabs	将图片拖到此处以新建标签页
+Resolution: 72 for screens, 300 for print. Click to switch.	分辨率：屏幕常用 72，印刷常用 300；点击切换。
+Preset sizes for screens and common formats	屏幕与常用格式的预设尺寸
+Start see-through, or with a white or black Background layer. Click to switch.	使用透明、白色或黑色背景开始，点击切换。
+Units: pixels, inches, centimeters or millimeters. Click to switch.	单位：像素、英寸、厘米或毫米，点击切换。
+Select layer; Cmd-click to select its pixels (Cmd-Shift adds, Cmd-Option subtracts)	选择图层；Command 点击选择其像素（Command-Shift 添加，Command-Option 减去）
+Expand or collapse folder	展开或折叠图层组
+Link layer and mask so they move together	链接图层与蒙版，使其一起移动
+Unlink layer and mask to move or transform them separately	取消链接图层与蒙版，以分别移动或变换
+Select layer mask; Option-click to view it alone; Shift-click to enable/disable; Cmd-click to select its black areas (Cmd-Shift adds, Cmd-Option subtracts)	选择蒙版；Option 点击单独查看；Shift 点击启用/停用；Command 点击选择黑色区域（Command-Shift 添加，Command-Option 减去）
+Controls how strong the sharpening is.	控制锐化强度。
+How far from each edge the sharpening reaches, in pixels.	锐化从边缘向外影响的范围（像素）。
+Emphasizes fine texture over broader edges.	优先增强细小纹理而非较大的边缘。
+Limits sharpening to stronger edges. Hold Option to see the mask.	将锐化限制在明显边缘；按住 Option 查看蒙版。
+Smooths grain and noise in brightness.	平滑明亮度颗粒与噪点。
+Preserves fine texture while luminance noise is reduced.	降低明亮度噪点时保留细小纹理。
+Keeps local contrast after luminance smoothing.	平滑明亮度后保留局部对比度。
+Smooths colored speckles.	平滑彩色噪点。
+Preserves colored edges while color noise is reduced.	降低彩色噪点时保留彩色边缘。
+Makes the color smoothing softer or tighter.	调整颜色平滑的柔和程度。
+Pulls red and blue fringes apart toward the center to reduce color edging.	将红蓝色边向中心校正，减少色差。
+Applies generic profile strength when camera metadata is not available.	没有相机元数据时应用通用校正强度。
+How much of the profile distortion correction is applied.	镜头配置文件畸变校正的应用强度。
+How much of the profile vignetting correction is applied.	镜头配置文件暗角校正的应用强度。
+Straightens barrel or pincushion bending.	校正桶形或枕形畸变。
+Click a purple or green fringe to set its hue range.	点击紫边或绿边以设置对应色相范围。
+Click the fringe on the layer. Click the eyedropper again to stop.	点击图层上的色边取样，再次点击吸管停止。
+Weakens purple fringes inside the purple hue range.	减弱所选紫色色相范围内的紫边。
+Hue range where purple defringe runs.	去紫边所作用的色相范围。
+Weakens green fringes inside the green hue range.	减弱所选绿色色相范围内的绿边。
+Hue range where green defringe runs.	去绿边所作用的色相范围。
+Brightens or darkens the corners to counter lens falloff.	提亮或压暗四角以校正镜头边缘亮度衰减。
+Moves the vignette correction inward or outward.	向内或向外移动暗角校正范围。
+Start of the hue range, in degrees.	色相范围的起点（度）。
+End of the hue range, in degrees.	色相范围的终点（度）。
+Paint with the foreground color (B), or erase pixels away (E)	使用前景色绘画（B），或擦除像素（E）
+Liquify pushes pixels	液化推移像素
+Blur softens	模糊柔化图像
+Smudge drags color along	涂抹拖动颜色
+Keep the source moving with the brush between strokes; off starts every stroke at the source point	各笔触间让取样源随画笔移动；关闭后每笔都从原取样点开始
+Copy from the active layer only, or from every visible layer as shown	仅从当前图层复制，或从所有可见图层的合成结果复制
+How far the blur softens, in pixels	模糊柔化范围（像素）
+The brush trails the pointer on a string this long, so a shaky hand still draws a smooth line	画笔以此长度跟随指针，减少手抖并绘制平滑线条
+Another app changed this project. You can revert to the version on disk, losing your unsaved changes, or keep what you have.	其他应用修改了此项目。你可以恢复磁盘上的版本（会丢失未保存的更改），也可以保留当前内容。
+Some dropped items couldn’t be read. Drag JPEG, PNG, HEIC, HEIF, TIFF, WebP, or Photoshop (PSD) files from Finder.	部分拖入的文件无法读取。请从访达拖入 JPEG、PNG、HEIC、HEIF、TIFF、WebP 或 Photoshop（PSD）文件。
+This is not a valid Compositor project, or its metadata is damaged.	这不是有效的 Compositor 项目，或项目元数据已损坏。
+An image inside the project is missing or damaged. The current document has not been replaced.	项目中的图片缺失或损坏，当前文档未被替换。
+An image could not be saved. The previous project has not been replaced.	图片无法保存，原项目未被替换。
+Choose a JPEG, PNG, HEIC, HEIF, TIFF, WebP, or Photoshop (PSD) file.	请选择 JPEG、PNG、HEIC、HEIF、TIFF、WebP 或 Photoshop（PSD）文件。
+The Photoshop stroke isn’t supported on shape layers and was omitted.	不支持此 Photoshop 形状图层的描边，已忽略。
+The Photoshop file could not be read. It may be damaged or incomplete.	无法读取 Photoshop 文件，文件可能损坏或不完整。
+This Photoshop file uses a format version Compositor can’t read.	Compositor 无法读取此 Photoshop 文件的格式版本。
+Only 8-bit RGB and CMYK Photoshop files can be imported.	只能导入 8 位 RGB 或 CMYK Photoshop 文件。
+This Photoshop file uses a layer compression method that isn’t supported.	不支持此 Photoshop 文件使用的图层压缩方式。
+Cropped to the canvas so the file fits in memory. Pixels outside the canvas weren't imported.	为适应内存限制，已裁切到画布边界；未导入画布外的像素。
+The smart object was rasterized. Linked contents can’t be edited.	智能对象已栅格化，无法编辑链接内容。
+Layer effects were discarded, so the appearance may differ.	图层效果已舍弃，显示效果可能不同。
+Vector shape was rasterized to pixels.	矢量形状已转换为像素。
+This Photoshop layer type isn’t supported and was imported as pixels.	不支持此 Photoshop 图层类型，已按像素导入。
+This adjustment type isn’t supported and was skipped.	不支持此调整类型，已跳过。
+Adjustment parameters may not match Photoshop exactly.	调整参数的效果可能与 Photoshop 不完全一致。
+The layer mask couldn’t be converted to 8-bit grayscale and was skipped.	图层蒙版无法转换为 8 位灰度，已跳过。
+This clipping mask’s base isn’t supported, so clipping was skipped.	不支持此剪贴蒙版的基础图层，已跳过剪贴。
+Editable Photoshop text becomes pixels and can’t be retyped.	可编辑的 Photoshop 文字已转为像素，无法重新输入文字。
+Only the first text style was kept.	只保留了第一种文字样式。
+The Photoshop text warp was omitted.	已忽略 Photoshop 文字变形。
+Faux bold or faux italic was omitted.	已忽略仿粗体或仿斜体。
+Full justification was imported as left alignment.	完全两端对齐已按左对齐导入。
+That selection is too detailed to outline. Try a different Tolerance, or turn on Contiguous.	选区过于复杂，无法生成轮廓。请调整容差，或开启连续选项。
+There isn’t enough memory to make that selection.	内存不足，无法创建该选区。
+Several layers are selected. Select just one to paint on it.	当前选中了多个图层，请只选择一个图层再绘画。
+The layer mask is turned off. Shift-click its thumbnail to turn it on, then paint.	图层蒙版已停用，请按住 Shift 点击缩略图启用，再进行绘画。
+Nothing is selected, so there’s nowhere to paint. Choose Select › Deselect (⌘D) to paint anywhere.	当前选区为空。选择“选择 › 取消选择”（⌘D）后即可在任意位置绘画。
+Option-click where Clone Stamp should copy from first.	请先按住 Option 点击仿制图章的取样位置。
+Bake keeps the current masked appearance in the dependent layers’ pixels. Remove Links reveals their pixels. You can undo either choice.	应用效果会将当前蒙版外观写入依赖图层的像素；移除链接会显示其原始像素。两种操作均可撤销。
+Click the image to center this range on that color	点击图像，以该颜色为范围中心
+Click the image to widen this range to include that color	点击图像，扩大范围以包含该颜色
+Click the image to narrow this range to exclude that color	点击图像，缩小范围以排除该颜色
+Object Selection requires macOS 14 or later.	对象选择需要 macOS 14 或更高版本。
+The object mask could not be rendered.	无法渲染对象蒙版。
+Smudge and Liquify work on a layer's pixels, not its mask.	涂抹和液化只能作用于图层像素，不能作用于蒙版。
+Not enough unselected, opaque image pixels to synthesize a fill. Use a smaller selection with some surrounding image.	选区外的不透明像素不足，无法合成填充。请缩小选区，并保留周围图像。
+No foreground subject was detected in this layer. Try an image with a more distinct subject.	未在此图层中检测到前景主体，请尝试主体更明显的图片。
+Tab switches Wand and Object	Tab 切换魔棒和对象选择
+Option-click sets the source	Option 点击设置取样源
+Shift-U switches Rectangle/Ellipse	Shift-U 切换矩形/椭圆
+Transparent canvas	透明画布
+White canvas	白色画布
+Black canvas	黑色画布
+Other formats: TIFF and PDF	其他格式：TIFF 和 PDF
+RGB histogram	RGB 直方图

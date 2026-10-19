@@ -14,33 +14,33 @@ struct ColorRangeSheet: View {
                         // Holding Shift or Option lights up the eyedropper a click will use.
                         .background(edit?.effectiveMode == mode ? Color.accentColor.opacity(0.25) : .clear,
                                     in: RoundedRectangle(cornerRadius: 4))
-                        .help(help(mode))
-                        .accessibilityLabel("\(mode.rawValue) color")
+                        .help(zh(help(mode)))
+                        .accessibilityLabel(zh("\(mode.rawValue) color"))
                 }
                 Spacer()
             }
             preview
-            Text(edit?.hasColors == true ? "Shift-click adds a color, Option-click takes one away."
-                                         : "Click the image to pick the color to select.")
+            Text(zh(edit?.hasColors == true ? "Shift-click adds a color, Option-click takes one away."
+                                         : "Click the image to pick the color to select."))
                 .font(.callout).foregroundStyle(.secondary)
             HStack(spacing: 10) {
-                Text("Fuzziness").fixedSize()
+                Text(zh("Fuzziness")).fixedSize()
                     .scrubbable(sensitivity: 1, value: fuzziness, range: ColorRangeEdit.fuzzinessRange)
                 Slider(value: fuzziness, in: ColorRangeEdit.fuzzinessRange)
-                TextField("Fuzziness", value: fuzziness, format: .number.precision(.fractionLength(0)))
+                TextField(zh("Fuzziness"), value: fuzziness, format: .number.precision(.fractionLength(0)))
                     .frame(width: 48).textFieldStyle(.roundedBorder).multilineTextAlignment(.trailing)
             }
-            .help("How far a color may be from the picked ones and still be selected")
-            Toggle("Invert", isOn: Binding(get: { edit?.invert ?? false }, set: { edit?.invert = $0; session.updateColorRange() }))
-                .help("Select everything except those colors, such as all but a green screen")
+            .help(zh("How far a color may be from the picked ones and still be selected"))
+            Toggle(zh("Invert"), isOn: Binding(get: { edit?.invert ?? false }, set: { edit?.invert = $0; session.updateColorRange() }))
+                .help(zh("Select everything except those colors, such as all but a green screen"))
             if let error = edit?.error {
-                Text(error).foregroundStyle(.orange).fixedSize(horizontal: false, vertical: true)
+                Text(zh(error)).foregroundStyle(.orange).fixedSize(horizontal: false, vertical: true)
             }
             Divider()
             HStack {
-                Button("Cancel") { session.cancelColorRange() }.configuredNativeShortcut(.escape)
+                Button(zh("Cancel")) { session.cancelColorRange() }.configuredNativeShortcut(.escape)
                 Spacer()
-                Button("OK") { session.commitColorRange() }
+                Button(zh("OK")) { session.commitColorRange() }
                     .configuredNativeShortcut(.return).buttonStyle(.borderedProminent)
             }
         }

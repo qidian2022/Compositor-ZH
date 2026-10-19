@@ -10,7 +10,7 @@ struct CommandPaletteView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            TextField("Search commands and tools", text: $model.query)
+            TextField(zh("Search commands and tools"), text: $model.query)
                 .textFieldStyle(.plain).font(.system(size: 17))
                 .padding(.horizontal, 16).padding(.vertical, 13)
                 .focused($searching)
@@ -33,7 +33,7 @@ struct CommandPaletteView: View {
                 }
                 .frame(maxHeight: .infinity)
                 .overlay {
-                    if model.results.isEmpty { Text("No commands match").foregroundStyle(.secondary) }
+                    if model.results.isEmpty { Text(zh("No commands match")).foregroundStyle(.secondary) }
                 }
                 .onChange(of: model.selection) { _, _ in
                     if let id = model.selected?.id { scroller.scrollTo(id) }
@@ -57,7 +57,7 @@ struct CommandPaletteView: View {
             }
             Text(entry.title).lineLimit(1)
             Spacer()
-            if let shortcut = entry.shortcut { Text(shortcut).font(.callout.monospaced()).foregroundStyle(.secondary) }
+            if let shortcut = entry.shortcut { Text(zh(shortcut)).font(.callout.monospaced()).foregroundStyle(.secondary) }
         }
         .padding(.horizontal, 10).padding(.vertical, 6)
         .background(chosen ? Color.accentColor.opacity(0.35) : .clear, in: RoundedRectangle(cornerRadius: 6))

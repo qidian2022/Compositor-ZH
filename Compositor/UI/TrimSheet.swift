@@ -12,13 +12,13 @@ struct TrimSheet: View {
 
     @ViewBuilder private var sheet: some View {
         VStack(alignment: .leading, spacing: 18) {
-            Text("Trim").font(.title2.bold())
+            Text(zh("Trim")).font(.title2.bold())
 
             VStack(alignment: .leading, spacing: 8) {
-                Text("Based On").font(.headline)
-                Picker("", selection: $basedOn) {
+                Text(zh("Based On")).font(.headline)
+                Picker(zh(""), selection: $basedOn) {
                     ForEach(TrimBasedOn.allCases) { option in
-                        Text(option.rawValue).tag(option)
+                        Text(zh(option.rawValue)).tag(option)
                     }
                 }
                 .labelsHidden()
@@ -28,15 +28,15 @@ struct TrimSheet: View {
             Divider()
 
             VStack(alignment: .leading, spacing: 8) {
-                Text("Trim Away").font(.headline)
+                Text(zh("Trim Away")).font(.headline)
                 Grid(alignment: .leading, horizontalSpacing: 24, verticalSpacing: 8) {
                     GridRow {
-                        Toggle("Top", isOn: $trimTop)
-                        Toggle("Bottom", isOn: $trimBottom)
+                        Toggle(zh("Top"), isOn: $trimTop)
+                        Toggle(zh("Bottom"), isOn: $trimBottom)
                     }
                     GridRow {
-                        Toggle("Left", isOn: $trimLeft)
-                        Toggle("Right", isOn: $trimRight)
+                        Toggle(zh("Left"), isOn: $trimLeft)
+                        Toggle(zh("Right"), isOn: $trimRight)
                     }
                 }
             }
@@ -44,10 +44,10 @@ struct TrimSheet: View {
             Divider()
 
             HStack {
-                Button("Cancel") { finish(nil) }
+                Button(zh("Cancel")) { finish(nil) }
                     .configuredNativeShortcut(.escape)
                 Spacer()
-                Button("OK") {
+                Button(zh("OK")) {
                     let options = TrimOptions(
                         basedOn: basedOn,
                         top: trimTop,

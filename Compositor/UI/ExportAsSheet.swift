@@ -78,16 +78,16 @@ struct ExportAsSheet: View {
     @ViewBuilder private var sheet: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack(spacing: 8) {
-                Text("Export As").font(.title2.bold())
+                Text(zh("Export As")).font(.title2.bold())
                 Spacer()
-                Button("Fit") { zoom = nil }.disabled(zoom == nil)
-                    .help("Show the whole image (⌘0)")
+                Button(zh("Fit")) { zoom = nil }.disabled(zoom == nil)
+                    .help(zh("Show the whole image (⌘0)"))
                 Button { zoomBy(1) } label: { Image(systemName: "plus.magnifyingglass") }
                     .disabled(JPEGPreview.step(from: shownZoom, in: 1) == nil)
-                    .help("Zoom in (⌘+), now \(percent). At 100% each pixel of the export is one pixel of the screen")
+                    .help(zh("Zoom in (⌘+), now \(percent). At 100% each pixel of the export is one pixel of the screen"))
                 Button { zoomBy(-1) } label: { Image(systemName: "minus.magnifyingglass") }
                     .disabled(JPEGPreview.step(from: shownZoom, in: -1) == nil)
-                    .help("Zoom out (⌘−), now \(percent)")
+                    .help(zh("Zoom out (⌘−), now \(percent)"))
             }
             .padding(.bottom, -8)
             ZStack {
@@ -99,92 +99,92 @@ struct ExportAsSheet: View {
                     ProgressView().padding().background(.regularMaterial, in: RoundedRectangle(cornerRadius: 8))
                 }
             }.frame(width: JPEGPreview.frame.width, height: JPEGPreview.frame.height).clipped()
-                .help("Drag or scroll to move around; double-click switches between Fit and 100%")
+                .help(zh("Drag or scroll to move around; double-click switches between Fit and 100%"))
             Grid(alignment: .leadingFirstTextBaseline, horizontalSpacing: 12, verticalSpacing: 12) {
                 GridRow {
-                    Text("Format")
+                    Text(zh("Format"))
                     // The everyday formats side by side, JPEG first; the rest (PDF, and EXR with an HDR layer) in a menu beside them,
                     // which takes the chosen one's name.
                     HStack(spacing: 12) {
-                        Picker("Format", selection: $format) {
-                            ForEach([ExportFormat.jpeg, .png], id: \.self) { Text($0.rawValue).tag($0) }
+                        Picker(zh("Format"), selection: $format) {
+                            ForEach([ExportFormat.jpeg, .png], id: \.self) { Text(zh($0.rawValue)).tag($0) }
                         }
                         .pickerStyle(.segmented).labelsHidden().fixedSize()
                         moreFormats
                     }
                 }
                 GridRow {
-                    Text("Size")
+                    Text(zh("Size"))
                     HStack(spacing: 6) {
-                        sizeField(width, set: setWidth).help("Width in pixels; the height follows, keeping the proportions")
-                        Text("×").foregroundStyle(.secondary)
-                        sizeField(height, set: setHeight).help("Height in pixels; the width follows, keeping the proportions")
-                        Text("px").foregroundStyle(.secondary)
-                        Menu("\(scalePercent)%") {
+                        sizeField(width, set: setWidth).help(zh("Width in pixels; the height follows, keeping the proportions"))
+                        Text(zh("×")).foregroundStyle(.secondary)
+                        sizeField(height, set: setHeight).help(zh("Height in pixels; the width follows, keeping the proportions"))
+                        Text(zh("px")).foregroundStyle(.secondary)
+                        Menu(zh("\(scalePercent)%")) {
                             ForEach([25, 50, 75, 100, 200], id: \.self) { percent in
-                                Button("\(percent)%") { setScale(Double(percent) / 100) }
+                                Button(zh("\(percent)%")) { setScale(Double(percent) / 100) }
                             }
                         }
-                        .fixedSize().help("Scale the export: the document stays as it is")
+                        .fixedSize().help(zh("Scale the export: the document stays as it is"))
                     }
                 }
                 if format == .jpeg {
                     GridRow {
-                        Text("Quality")
+                        Text(zh("Quality"))
                         HStack {
                             Slider(value: $options.quality, in: 0...1, step: 0.01).frame(width: 300)
-                            Text("\(Int((options.quality * 100).rounded()))%").monospacedDigit().frame(width: 45, alignment: .trailing)
+                            Text(zh("\(Int((options.quality * 100).rounded()))%")).monospacedDigit().frame(width: 45, alignment: .trailing)
                         }
                     }
                 }
                 if format == .png, deepRaster != nil {
                     GridRow {
-                        Text("Depth")
-                        Toggle("16 bits per channel", isOn: $sixteenBit)
-                            .help("Keep the 16-bit layers' full precision, in a file about twice the size")
+                        Text(zh("Depth"))
+                        Toggle(zh("16 bits per channel"), isOn: $sixteenBit)
+                            .help(zh("Keep the 16-bit layers' full precision, in a file about twice the size"))
                     }
                 }
                 if takesCMYK {
                     GridRow {
-                        Text("Color")
+                        Text(zh("Color"))
                         HStack(spacing: 10) {
                             colorMenu
                             // CMYK goes through View › CMYK › Profile's profile, named under the settings; a printer's own
                             // can be loaded here too.
                             if cmyk {
-                                Button("Load Profile…") { loadProfile() }
-                                    .help("Use a CMYK ICC profile, such as the one your printer gave you")
+                                Button(zh("Load Profile…")) { loadProfile() }
+                                    .help(zh("Use a CMYK ICC profile, such as the one your printer gave you"))
                             }
                         }
                     }
                 }
                 if format == .pdf {
                     GridRow {
-                        Text("Page")
-                        Text(pageSize).foregroundStyle(.secondary)
+                        Text(zh("Page"))
+                        Text(zh(pageSize)).foregroundStyle(.secondary)
                     }
                 }
                 // JPEG and ink have no transparency, and a PDF's page shows through it, so they fill it with a color.
                 if format == .jpeg || format == .pdf || (format == .tiff && cmyk) {
                     GridRow {
-                        Text("Background")
+                        Text(zh("Background"))
                         DialogColorSwatch(title: "Export Background", color: matte, session: session)
-                            .help("Color that fills transparent areas")
+                            .help(zh("Color that fills transparent areas"))
                     }
                 }
             }
             HStack(spacing: 12) {
-                Text(format == .exr ? "Brighter than white kept · Transparency kept"
+                Text(zh(format == .exr ? "Brighter than white kept · Transparency kept"
                      : takesCMYK && cmyk ? "CMYK – \(profile?.name ?? "No profile")"
-                     : format == .png || format == .tiff ? "Transparency kept · sRGB" : "sRGB")
+                     : format == .png || format == .tiff ? "Transparency kept · sRGB" : "sRGB"))
                     .foregroundStyle(.secondary)
                 Spacer()
-                if let error { Text(error).foregroundStyle(.red) }
+                if let error { Text(zh(error)).foregroundStyle(.red) }
                 else if isReady, let result {
-                    Text(ByteCountFormatter.string(fromByteCount: Int64(result.data.count), countStyle: .file)).monospacedDigit()
-                } else { Text("Updating…").foregroundStyle(.secondary) }
-                Button("Cancel") { DialogColorSwatch.closePicker(session); finish(nil) }.configuredNativeShortcut(.escape)
-                Button("Export…") {
+                    Text(zh(ByteCountFormatter.string(fromByteCount: Int64(result.data.count), countStyle: .file))).monospacedDigit()
+                } else { Text(zh("Updating…")).foregroundStyle(.secondary) }
+                Button(zh("Cancel")) { DialogColorSwatch.closePicker(session); finish(nil) }.configuredNativeShortcut(.escape)
+                Button(zh("Export…")) {
                     DialogColorSwatch.closePicker(session)
                     if format == .jpeg { UserDefaults.standard.set(options.quality, forKey: Self.qualityKey) }
                     if let result { finish((result.data, result.settings.format)) }
@@ -242,12 +242,12 @@ struct ExportAsSheet: View {
     /// RGB or CMYK: one small menu, as few need CMYK. The profile CMYK goes through is View › CMYK › Profile's, named in
     /// the line under the settings.
     private var colorMenu: some View {
-        Menu(cmyk ? "CMYK" : "RGB") {
-            Toggle("RGB", isOn: Binding(get: { !cmyk }, set: { if $0 { cmyk = false } }))
-            Toggle("CMYK", isOn: Binding(get: { cmyk }, set: { if $0 { cmyk = true } }))
+        Menu(zh(cmyk ? "CMYK" : "RGB")) {
+            Toggle(zh("RGB"), isOn: Binding(get: { !cmyk }, set: { if $0 { cmyk = false } }))
+            Toggle(zh("CMYK"), isOn: Binding(get: { cmyk }, set: { if $0 { cmyk = true } }))
         }
         .menuStyle(.button).buttonStyle(.bordered).fixedSize()
-        .help("CMYK writes a printer's inks through the profile in View › CMYK › Profile")
+        .help(zh("CMYK writes a printer's inks through the profile in View › CMYK › Profile"))
     }
 
     private func loadProfile() {
@@ -264,19 +264,19 @@ struct ExportAsSheet: View {
     @ViewBuilder private var moreFormats: some View {
         let others = formats.filter { $0 != .png && $0 != .jpeg }
         let chosen = others.contains(format)
-        let menu = Menu(chosen ? format.rawValue : "More") {
-            Picker("More formats", selection: $format) {
-                ForEach(others, id: \.self) { Text($0.rawValue).tag($0) }
+        let menu = Menu(zh(chosen ? format.rawValue : "More")) {
+            Picker(zh("More formats"), selection: $format) {
+                ForEach(others, id: \.self) { Text(zh($0.rawValue)).tag($0) }
             }
             .pickerStyle(.inline).labelsHidden()
         }
         .menuStyle(.button).fixedSize()
-        .help("Other formats: TIFF and PDF\(others.contains(.exr) ? ", and EXR to keep light brighter than white" : "")")
+        .help(zh("Other formats: TIFF and PDF\(others.contains(.exr) ? ", and EXR to keep light brighter than white" : "")"))
         if chosen { menu.buttonStyle(.borderedProminent) } else { menu.buttonStyle(.bordered) }
     }
 
     private func sizeField(_ value: Int, set: @escaping (Int) -> Void) -> some View {
-        TextField("", value: Binding(get: { value }, set: set), format: .number.grouping(.never))
+        TextField(zh(""), value: Binding(get: { value }, set: set), format: .number.grouping(.never))
             .frame(width: 64).multilineTextAlignment(.trailing)
     }
     /// Both sides follow one, keeping the canvas's proportions, within the export limits.

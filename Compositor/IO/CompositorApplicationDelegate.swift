@@ -1,20 +1,17 @@
 import AppKit
-import Sparkle
 
 final class CompositorApplicationDelegate: NSObject, NSApplicationDelegate {
     let workspace = ProjectWorkspace()
     var session: EditorSession { workspace.current.session }
     var projects: ProjectController { workspace.current.controller }
     var showEditor: (() -> Void)?
-    /// Checks the update feed and installs new versions (Sparkle), offering each one with what's new listed in it.
-    /// Started only after launch: its first-run prompt, shown during launch, kept the editor window from ever opening.
-    private let updateDriver = UpdateDriver()
-    private let updaterDelegate = UpdaterDelegate()
-    lazy var updater: SPUUpdater = {
-        let updater = SPUUpdater(hostBundle: .main, applicationBundle: .main, userDriver: updateDriver, delegate: updaterDelegate)
-        updateDriver.updater = updater
-        return updater
-    }()
+    func showLocalizationInfo() {
+        let alert = NSAlert()
+        alert.messageText = zh("Compositor 中文版")
+        alert.informativeText = zh("Compositor-ZH 1.5.3-zh.1：基于 Compositor v1.5.3 的独立简体中文分支。原作者：Robbie Tilton / Wonder Assembly LLC。MIT 许可。请从 github.com/qidian2022/Compositor-ZH 获取中文版更新。此版本不自动更新。")
+        alert.addButton(withTitle: zh("好"))
+        alert.runModal()
+    }
 
     // Finder Open With and Dock drops, including files delivered during launch.
     func application(_ application: NSApplication, open urls: [URL]) {
@@ -39,7 +36,7 @@ final class CompositorApplicationDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillFinishLaunching(_ notification: Notification) {
         // AppKit's own switches for two of the Edit menu's text extras (see `removeSystemExtras`).
-        UserDefaults.standard.register(defaults: ["NSDisabledDictationMenuItem": true, "NSDisabledCharacterPaletteMenuItem": true])
+        UserDefaults.standard.register(defaults: ["AppleLanguages": ["zh-Hans"], "NSDisabledDictationMenuItem": true, "NSDisabledCharacterPaletteMenuItem": true])
         // Always dark, alerts and open/save panels included, whatever the Mac is set to.
         NSApp.appearance = NSAppearance(named: .darkAqua)
         // Slider knobs snap to a click on the track instead of gliding there.
@@ -80,13 +77,7 @@ final class CompositorApplicationDelegate: NSObject, NSApplicationDelegate {
             guard let menu = note.object as? NSMenu, let index = note.userInfo?["NSMenuItemIndex"] as? Int else { return }
             MainActor.assumeIsolated { Self.removeIfSystemExtra(at: index, in: menu) }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-            do { try self?.updater.start() } catch { NSLog("Sparkle didn't start: \(error)") }
-            #if DEBUG
-            // Trying an update against a local feed: check straight away.
-            if UserDefaults.standard.string(forKey: "UpdateFeedURL") != nil { self?.updater.checkForUpdates() }
-            #endif
-        }
+
     }
 
     /// Black over everything but the window's inside in Canvas Only: the screen around it, its rounded corners and the
