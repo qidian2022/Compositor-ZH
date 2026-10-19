@@ -8,7 +8,7 @@ final class CompositorApplicationDelegate: NSObject, NSApplicationDelegate {
     func showLocalizationInfo() {
         let alert = NSAlert()
         alert.messageText = zh("Compositor 中文版")
-        alert.informativeText = zh("Compositor-ZH 1.5.3-zh.1：基于 Compositor v1.5.3 的独立简体中文分支。原作者：Robbie Tilton / Wonder Assembly LLC。MIT 许可。请从 github.com/qidian2022/Compositor-ZH 获取中文版更新。此版本不自动更新。")
+        alert.informativeText = zh("Compositor-ZH 1.5.3-zh.2：基于 Compositor v1.5.3 的独立简体中文分支。原作者：Robbie Tilton / Wonder Assembly LLC。MIT 许可。请从 github.com/qidian2022/Compositor-ZH 获取中文版更新。此版本不自动更新。")
         alert.addButton(withTitle: zh("好"))
         alert.runModal()
     }

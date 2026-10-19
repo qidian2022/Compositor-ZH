@@ -1126,3 +1126,9 @@ White canvas	白色画布
 Black canvas	黑色画布
 Other formats: TIFF and PDF	其他格式：TIFF 和 PDF
 RGB histogram	RGB 直方图
+Crop Mask	裁剪蒙版
+Hide Crop Mask	隐藏裁剪蒙版
+Show Crop Mask	显示裁剪蒙版
+Remove Crop Mask	移除裁剪蒙版
+Original uses the first imported photo’s ratio; Free never locks the ratio.	原始比例取首次导入照片的比例；自由模式不锁定比例。
+Applies to the whole canvas. Hide or remove to restore the full image without discarding edits.	作用于整个画布。隐藏或移除可恢复完整画面，并保留当前编辑。

@@ -17,6 +17,32 @@ struct LayersPanel: View {
                     .accessibilityIdentifier("layerCount")
             }.padding(18)
             Divider()
+            if let crop = session.document?.cropMask {
+                HStack(spacing: 8) {
+                    Button { Task { await session.toggleCropMask() } } label: {
+                        Image(systemName: crop.isEnabled ? "eye" : "eye.slash").frame(width: 24, height: 28)
+                    }
+                    .accessibilityLabel(zh(crop.isEnabled ? "Hide Crop Mask" : "Show Crop Mask"))
+                    .accessibilityIdentifier("toggleCropMask")
+                    Image(systemName: "crop")
+                    VStack(alignment: .leading, spacing: 3) {
+                        Text(zh("Crop Mask")).font(.system(size: 12, weight: .medium))
+                        Text("\(Int(crop.rect.width)) × \(Int(crop.rect.height)) px")
+                            .font(.caption.monospacedDigit()).foregroundStyle(.secondary)
+                    }
+                    Spacer(minLength: 0)
+                    Button { Task { await session.removeCropMask() } } label: {
+                        Image(systemName: "trash").frame(width: 24, height: 28)
+                    }
+                    .accessibilityLabel(zh("Remove Crop Mask"))
+                    .accessibilityIdentifier("removeCropMask")
+                }
+                .buttonStyle(.plain).padding(.horizontal, 12).padding(.vertical, 10)
+                .background(.primary.opacity(0.04))
+                .help(zh("Applies to the whole canvas. Hide or remove to restore the full image without discarding edits."))
+                .disabled(!session.canStartProjectOperation)
+                Divider()
+            }
             LayerAppearanceControls(session: session, layerID: session.activeLayerID).id(session.activeLayerID)
             Divider()
             if let layers = session.document?.layers, !layers.isEmpty {

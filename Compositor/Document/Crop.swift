@@ -37,10 +37,27 @@ struct CropDrag {
         case .create: return CropGeometry.create(from: start, to: point, ratio: ratio, symmetric: symmetric)
         case .move: return CropGeometry.snapped(original.offsetBy(dx: point.x - start.x, dy: point.y - start.y))
         case .resize(let index):
-            let transform = LayerTransform(origin: original.origin, size: original.size)
-            let drag = TransformDrag(original: transform, start: start, mode: .resize(index))
-            let next = drag.updated(to: point, lockRatio: ratio != nil, shift: false, option: symmetric)
-            return CropGeometry.snapped(CGRect(origin: next.origin, size: next.size))
+            // Cropping has its own ratio; never inherit a layer's transform lock or a stale frame ratio.
+            let handle = LayerTransform.handles[index]
+            let sx = handle.x * 2 - 1, sy = handle.y * 2 - 1
+            let anchor = symmetric ? CGPoint(x: original.midX, y: original.midY)
+                : CGPoint(x: original.minX + (1 - handle.x) * original.width,
+                          y: original.minY + (1 - handle.y) * original.height)
+            let grab = CGPoint(x: original.minX + handle.x * original.width + point.x - start.x,
+                               y: original.minY + handle.y * original.height + point.y - start.y)
+            let span: CGFloat = symmetric ? 2 : 1
+            let dx = grab.x - anchor.x, dy = grab.y - anchor.y
+            var width = sx == 0 ? original.width : max(1, abs(dx) * span)
+            var height = sy == 0 ? original.height : max(1, abs(dy) * span)
+            if let ratio, ratio.isFinite, ratio > 0 {
+                if sx == 0 { width = height * ratio }
+                else if sy == 0 { height = width / ratio }
+                else if width > height * ratio { height = width / ratio }
+                else { width = height * ratio }
+            }
+            let x = symmetric || sx == 0 ? anchor.x - width / 2 : (dx < 0 ? anchor.x - width : anchor.x)
+            let y = symmetric || sy == 0 ? anchor.y - height / 2 : (dy < 0 ? anchor.y - height : anchor.y)
+            return CGRect(x: x.rounded(), y: y.rounded(), width: max(1, width.rounded()), height: max(1, height.rounded()))
         }
     }
 }
@@ -217,7 +234,11 @@ extension EditorSession {
     }
     var cropRatio: CGFloat? {
         switch cropRatioChoice {
-        case "Original": return document.map { CGFloat($0.width) / CGFloat($0.height) }
+        case "Original": return document.map {
+            if let ratio = $0.originalAspectRatio { return CGFloat(ratio) }
+            let size = $0.cropMask?.fullSize ?? $0.size
+            return size.width / size.height
+        }
         case "1:1": return 1
         case "4:3": return 4 / 3
         case "3:4": return 3 / 4
@@ -234,16 +255,41 @@ extension EditorSession {
         if CropGeometry.valid(next) { cropRect = next }
     }
     func commitCrop() async {
-        guard canStartProjectOperation, let rect = cropRect, CropGeometry.valid(rect),
-              let snapshot = projectSnapshot() else { return }
+        guard canStartProjectOperation, let rect = cropRect, CropGeometry.valid(rect), let document else { return }
+        let current = document.cropMask
+        let origin = current?.visibleOrigin ?? .zero
+        let mask = CanvasCrop(fullSize: current?.fullSize ?? document.size,
+                              rect: CropGeometry.snapped(rect.offsetBy(dx: origin.x, dy: origin.y)))
+        await setCropMask(mask, actionName: "Crop")
+    }
+
+    func toggleCropMask() async {
+        guard var mask = document?.cropMask else { return }
+        mask.isEnabled.toggle()
+        await setCropMask(mask, actionName: mask.isEnabled ? "Show Crop Mask" : "Hide Crop Mask")
+    }
+
+    func removeCropMask() async {
+        guard document?.cropMask != nil else { return }
+        await setCropMask(nil, actionName: "Remove Crop Mask")
+    }
+
+    private func setCropMask(_ mask: CanvasCrop?, actionName: String) async {
+        guard canStartProjectOperation, let document, let snapshot = projectSnapshot() else { return }
+        let old = document.cropMask
+        let size = mask?.visibleSize ?? old?.fullSize ?? document.size
+        let from = old?.visibleOrigin ?? .zero, to = mask?.visibleOrigin ?? .zero
+        if let mask, !mask.isValid(width: Int(size.width), height: Int(size.height)) { return }
         isProjectBusy = true
         defer { isProjectBusy = false }
         do {
-            let result = try await CanvasResizer.shared.resize(snapshot,
-                to: CanvasSizeOptions(width: Int(rect.width), height: Int(rect.height),
-                    contentOffset: CGPoint(x: -rect.minX, y: -rect.minY)))
+            let resized = try await CanvasResizer.shared.resize(snapshot,
+                to: CanvasSizeOptions(width: Int(size.width), height: Int(size.height),
+                    contentOffset: CGPoint(x: from.x - to.x, y: from.y - to.y)))
+            var manifest = resized.manifest
+            manifest.cropMask = mask
             cropRect = nil
-            applyDocumentSize(result, actionName: "Crop")
+            applyDocumentSize(ProjectSnapshot(manifest: manifest, images: resized.images, masks: resized.masks), actionName: actionName)
         } catch { cropError = error.localizedDescription }
     }
 }

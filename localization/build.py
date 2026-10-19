@@ -10,7 +10,7 @@ import shutil
 import subprocess
 from generate import ROOT, catalog
 
-VERSION = '1.5.3-zh.1'
+VERSION = '1.5.3-zh.2'
 
 def run(*args, **kwargs):
     return subprocess.run([str(arg) for arg in args], check=True, **kwargs)
@@ -77,7 +77,7 @@ def main():
     info.update(CFBundleExecutable='Compositor', CFBundlePackageType='APPL',
                 CFBundleIdentifier='io.github.qidian2022.compositor-zh',
                 CFBundleName='Compositor 中文版', CFBundleDisplayName='Compositor 中文版',
-                CFBundleShortVersionString='1.5.3', CFBundleVersion='15301',
+                CFBundleShortVersionString='1.5.3', CFBundleVersion='15302',
                 CompositorZHVersion=VERSION, CFBundleIconFile='AppIcon',
                 CFBundleDevelopmentRegion='zh-Hans', CFBundleLocalizations=['zh-Hans', 'en'],
                 LSMinimumSystemVersion='26.0', LSArchitecturePriority=['arm64'],

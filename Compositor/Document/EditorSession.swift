@@ -69,14 +69,18 @@ struct CanvasDocument: Equatable {
     var guides: [CanvasGuide] = []
     /// Part of the document so undo/redo covers selection changes. Not saved to disk.
     var selection: DocumentSelection?
+    var originalAspectRatio: Double?
+    var cropMask: CanvasCrop?
     var size: CGSize { CGSize(width: width, height: height) }
-    init(id: UUID = UUID(), width: Int, height: Int, layers: [ImageLayer] = [], resolution: Double = 72, guides: [CanvasGuide] = []) {
+    init(id: UUID = UUID(), width: Int, height: Int, layers: [ImageLayer] = [], resolution: Double = 72, guides: [CanvasGuide] = [], originalAspectRatio: Double? = nil, cropMask: CanvasCrop? = nil) {
         self.id = id
         self.width = width
         self.height = height
         self.layers = layers
         self.resolution = resolution
         self.guides = guides
+        self.originalAspectRatio = originalAspectRatio
+        self.cropMask = cropMask
     }
 
     // Geometry limit; raster memory limits will be established with image import.
@@ -942,6 +946,9 @@ final class EditorSession {
             document = CanvasDocument(width: asset.image.width, height: asset.image.height)
             viewport.fit(documentSize: document!.size)
         }
+        if document?.originalAspectRatio == nil {
+            document?.originalAspectRatio = Double(asset.image.width) / Double(asset.image.height)
+        }
         guard let document else { return }
         let center = point ?? CGPoint(x: CGFloat(document.width) / 2, y: CGFloat(document.height) / 2)
         var layer = ImageLayer(asset: asset, origin: CGPoint(
@@ -1006,12 +1013,15 @@ final class EditorSession {
         let added = incoming.count + (wrapping ? 1 : 0)
         if (document?.layers.count ?? 0) + added > 10_000 { throw ImageImportError.tooLarge }
         if document == nil {
-            document = CanvasDocument(width: imported.width, height: imported.height, layers: incoming, resolution: imported.resolution)
+            document = CanvasDocument(width: imported.width, height: imported.height, layers: incoming, resolution: imported.resolution, originalAspectRatio: Double(imported.width) / Double(imported.height))
             viewport.fit(documentSize: document!.size)
             activeLayerID = incoming.last(where: { $0.parentID == nil })?.id ?? incoming.last?.id
             return
         }
         guard document != nil else { return }
+        if document?.originalAspectRatio == nil {
+            document?.originalAspectRatio = Double(imported.width) / Double(imported.height)
+        }
         var group = ImageLayer(name: named, blankSize: document!.size)
         group.isGroup = true
         group.parentID = activeLayer?.isGroup == true ? activeLayerID : activeLayer?.parentID

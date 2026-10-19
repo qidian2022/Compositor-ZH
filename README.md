@@ -1,104 +1,110 @@
 # Compositor 中文版
 
-**免费开源的中文 Photoshop 替代工具，专为 Apple Silicon Mac。**
+**免费开源的 Mac 中文图片编辑器，用于修图、抠图、海报制作和多图合成。**
 
-想找一款“免费中文版 PS”，用来修照片、抠图、做海报和多图合成？Compositor-ZH 提供熟悉的图层、蒙版、选区、画笔与调色工作流，配合简体中文界面，无订阅费用。
+图层、蒙版、选区、画笔、RAW 显影与调色工具集中在一个原生 Mac 界面中，无订阅费用。适合希望使用中文界面、完成日常照片处理和设计工作的用户。
 
-这是 [Compositor](https://github.com/robbietilton/Compositor) 的独立汉化 fork，基于 **v1.5.3**。它不是 Adobe Photoshop，不使用 Adobe Camera Raw 引擎，也不承诺与 Photoshop 功能或文件效果完全一致。
-
-[下载中文版](https://github.com/qidian2022/Compositor-ZH/releases/tag/v1.5.3-zh.1) · [反馈问题](https://github.com/qidian2022/Compositor-ZH/issues) · [构建说明](docs/build-zh.md) · [版本记录](CHANGELOG.md)
+[下载 1.5.3-zh.2](https://github.com/qidian2022/Compositor-ZH/releases/tag/v1.5.3-zh.2) · [反馈问题](https://github.com/qidian2022/Compositor-ZH/issues) · [版本记录](CHANGELOG.md)
 
 ![Compositor 中文编辑界面](docs/images/editor-zh.jpg)
 
-*截图来自采用相同中文编辑界面源码的本地预览构建，使用专门制作的演示素材。*
+## 主要功能
+
+| 用途 | 功能 |
+| --- | --- |
+| 图层合成 | 图层与分组、不透明度、混合模式、图层蒙版、剪贴蒙版、调整图层、合并与复制 |
+| 抠图与选区 | 矩形与椭圆选框、套索、多边形套索、魔棒、对象与主体选择、选区扩展/收缩/羽化 |
+| 修图与绘画 | 画笔、橡皮擦、修复画笔、仿制图章、内容识别填充、模糊、涂抹、液化、吸管 |
+| 裁剪与变换 | 自由裁剪、固定比例裁剪、可隐藏或移除的裁剪蒙版、旋转、翻转、缩放与自由扭曲 |
+| 文字与排版 | 可编辑文字、形状、渐变、标尺、参考线、网格与吸附 |
+| 色彩调整 | 色阶、曲线、曝光、色相与饱和度、色彩平衡、黑白、渐变映射、颗粒与辉光 |
+| RAW 处理 | 相机 RAW 导入显影，以及光线、色彩、曲线、混色、色彩分级、细节与几何调整 |
+| 保存与输出 | `.comp` 分层项目保存，PNG、JPEG、TIFF、单页 PDF、EXR 导出，CMYK 软打样与色域警告 |
+| 操作效率 | 多项目标签、撤销与重做、中文命令搜索、可自定义快捷键 |
+
+### 新版裁剪
+
+“自由”模式可以独立调整宽高；“原始比例”采用首次导入照片的比例，不会随着后续裁剪改变。
+
+应用裁剪后，右侧图层面板会出现“裁剪蒙版”。点击眼睛可以隐藏或显示，点击垃圾桶可以移除。隐藏或移除后恢复完整画布；启用时，导出图片按裁剪框缩小尺寸。裁剪状态可以随项目保存，支持撤销与重做。
+
+裁剪本身保留源图像和已有图层蒙版。若后续需要合并图层等破坏性操作，并希望保留画布外内容，请先隐藏裁剪蒙版。
 
 ## 下载与安装
 
-- **系统：macOS 26.0 或更新版本；芯片：Apple Silicon（M 系列）。** 此版本不提供 Intel Mac 或 Windows 安装包。
-- 在 [Releases](https://github.com/qidian2022/Compositor-ZH/releases) 下载 `Compositor-ZH-1.5.3-zh.1-arm64.zip`，解压后把 `Compositor 中文版.app` 拖到“应用程序”。
-- 首版是**预览版**：只有 ad-hoc 临时签名，**没有 Developer ID 签名及 Apple 公证**，macOS 可能阻止打开。校验值只用于核对下载完整性，并不等于 Apple 安全认证。可从本仓库源码自行构建；如选择运行下载版本，请先确认来源，再参阅 [Apple 的安全打开应用说明](https://support.apple.com/zh-cn/102445)。不需要关闭 Gatekeeper 或更改全局安全设置。
-- 请从本 fork 下载中文版。上游官网、Homebrew 包和上游 Release 提供的是原版。
-- 更新时从本仓库下载新包并替换应用；本分支已移除自动更新，避免被上游英文版覆盖。替换前保存项目。
+**系统要求：Apple Silicon（M 系列芯片），macOS 26.0 或更新版本。** 暂不提供 Intel Mac 或 Windows 版本。
 
-可选的下载校验（把 ZIP 和 `SHA256SUMS.txt` 放在同一目录）：
+### 使用 DMG 安装（推荐）
+
+1. 打开[下载页面](https://github.com/qidian2022/Compositor-ZH/releases/tag/v1.5.3-zh.2)，在 **Assets** 中下载 `Compositor-ZH-1.5.3-zh.2-arm64.dmg`。
+2. 双击 DMG，将 **Compositor 中文版.app** 拖入窗口里的 **Applications（应用程序）**。
+3. 从 Finder 的“应用程序”文件夹打开 **Compositor 中文版**。
+4. 安装完成后，可以推出安装磁盘，并删除下载的 DMG。
+
+也可以下载同版本 `.zip`，解压后将应用拖入“应用程序”。**Source code 是源码包，普通安装无需下载。**
+
+### 首次打开被系统拦截怎么办？
+
+当前为预览版，仅采用 ad-hoc 临时签名，尚无 Developer ID 签名及 Apple 公证。确认安装包来自本仓库后：
+
+1. 先双击尝试打开应用。
+2. 若提示无法验证开发者，或 Apple 无法检查是否包含恶意软件，进入 **系统设置 → 隐私与安全性**。
+3. 找到该应用的提示，点击 **仍要打开**，按提示确认；可能需要密码或 Touch ID。
+4. 放行后，通常可以直接双击启动。
+
+无需关闭 Gatekeeper 或更改全局安全设置。若提示“应用已损坏”，请重新下载或到 Issues 反馈；受公司或学校管理的电脑可能不允许手动放行。参见 [Apple 官方操作说明](https://support.apple.com/zh-cn/102445)。
+
+### 更新软件
+
+保存正在编辑的项目并退出软件，下载新版本，再将应用拖入“应用程序”并选择替换。当前采用手动更新，可在 [Releases](https://github.com/qidian2022/Compositor-ZH/releases) 查看新版。
+
+<details>
+<summary>可选：核对下载完整性</summary>
+
+把安装包和同一版本的 `SHA256SUMS.txt` 放在同一文件夹，在该文件夹打开终端并运行：
 
 ```sh
-shasum -a 256 -c SHA256SUMS.txt
+shasum -a 256 --ignore-missing -c SHA256SUMS.txt
 ```
 
-## 能做什么
+对应文件显示 `OK` 即表示校验一致。校验值用于检查下载完整性，不代表 Apple 安全认证。
 
-以下功能来自本分支基于的 v1.5.3 源码；中文适配主要改变显示文本，不另造图像引擎。
-
-| 使用场景 | 支持的功能 |
-| --- | --- |
-| 多图合成 | 图层与分组、不透明度、混合模式、图层蒙版、剪贴蒙版、调整图层、合并与复制 |
-| 抠图与选区 | 矩形/椭圆选框、套索/多边形套索、魔棒、对象/主体选择、扩展/收缩/羽化、内容识别填充 |
-| 修图与绘画 | 画笔、橡皮擦、修复画笔、仿制图章、模糊、涂抹、液化、吸管 |
-| 排版与变换 | 可编辑文字与形状、渐变、移动/缩放/旋转/翻转、自由扭曲、裁剪、标尺/参考线/网格/吸附 |
-| 色彩与质感 | 色阶、曲线、色相/饱和度、曝光、黑白、色彩平衡、渐变映射、颗粒、模糊、暗角和辉光等 |
-| RAW 工作流 | 相机 RAW 导入显影；导入后可用 RAW 调色滤镜继续调整光线、色彩、曲线、混色、色彩分级、细节和几何 |
-| 输出与印刷 | PNG、JPEG、TIFF、单页 PDF、EXR；部分格式提供 16 位或 HDR 路径；CMYK 软打样、色域警告和支持的格式转出 |
-| 日常操作 | 多项目标签、撤销/重做、中文命令搜索、可自定义快捷键、原生 `.comp` 项目保存 |
+</details>
 
 ## 快速开始
 
-1. 打开应用，新建画布或打开图片，也可把图片拖入画布。
-2. 在左侧选择工具；在右侧图层面板调整顺序、不透明度和混合模式。
-3. 修照片时打开调色滤镜；多图合成时结合蒙版、文字和形状。
-4. 按 `⌘S` 保存为 `.comp`，保留可继续编辑的项目。
-5. 使用“文件”菜单导出成图片；`⇧⌘E` 导出 PNG，`⇧⌥⌘S` 导出 JPEG。导出图片与保存项目是两件事。
+1. 打开图片，或新建画布后把图片拖进去。
+2. 使用左侧工具处理图片，在右侧图层面板调整顺序、混合模式和蒙版。
+3. 修照片时使用调色工具；做海报时添加文字、形状和多张图片。
+4. 按 `⌘S` 保存为 `.comp` 项目，以便继续编辑。
+5. 从“文件”菜单导出图片；`⇧⌘E` 导出 PNG，`⇧⌥⌘S` 导出 JPEG。
 
-常用快捷键：`V` 移动、`B` 画笔、`E` 橡皮擦、`T` 文字、`⌘F` 搜索命令、`⌘Z` 撤销。找不到某个操作时，可以先按 `⌘F` 搜索中文名称。
+常用快捷键：`V` 移动、`B` 画笔、`E` 橡皮擦、`T` 文字、`⌘Z` 撤销。找不到工具时，可按 `⌘F` 搜索中文命令。
 
-## RAW 显影和 RAW 调色滤镜有什么区别？
+## RAW 与文件格式
 
-**导入显影**读取相机 RAW 原始数据，使用 macOS Core Image 的 `CIRAWFilter`。可以先调整曝光、白平衡、色调、降噪，以及相机和文件支持的镜头校正/高光恢复，然后生成图层。相机兼容性随运行系统变化，并非所有扩展名相同的 RAW 都一定能打开。请核对 [Apple 的 macOS 26 RAW 相机支持列表](https://support.apple.com/zh-cn/122870)。该列表包含 Nikon Z30；**本分支尚未使用 Z30 NEF 实拍文件测试**。
+RAW 导入显影读取相机原始数据，可调整曝光、白平衡、色调和降噪；镜头校正与高光恢复取决于文件及系统支持。相机兼容性由 macOS 的 RAW 支持决定，可查阅 [Apple 相机支持列表](https://support.apple.com/zh-cn/122870)。建议始终保留原始 RAW 文件。
 
-**RAW 调色滤镜**用于已经进入编辑器的图像，包括 JPEG、PNG 和已显影的 RAW 图层。它提供类似摄影软件的调色面板，但不会把普通图片变回相机原始数据，也不等于重新读取 RAW。实现来自 Compositor，自带调色逻辑与查找表，不是 Adobe Camera Raw 插件。
+导入后的 RAW 调色滤镜也可用于 JPEG、PNG 等图片，但不会把普通图片变回 RAW。
 
-建议保留原始 RAW 文件，便于之后重新显影；不要把 `.comp` 当作 RAW 原片的备份。
-
-## 格式与兼容边界
-
-| 格式 | 当前范围与限制 |
+| 格式 | 支持情况 |
 | --- | --- |
-| 常见图片 | 导入 JPEG、PNG、HEIC/HEIF、TIFF、WebP；具体解码依赖系统框架 |
-| SVG | 导入时栅格化为图像图层，不保持 SVG 矢量可编辑性 |
-| PSD / PSB | 分层读取支持 **8 位 RGB 与 8 位 CMYK**；CMYK 通过 ICC 配置转换为 RGB 编辑。分组、蒙版、混合模式及部分文字/形状可保留；其他内容可能栅格化或降级，导入时查看转换报告 |
-| 16 位图像 | 源码有 16 位 PNG/TIFF 等图像图层及相关编辑/输出路径；这**不代表支持 16 位分层 PSD**，也不代表每个工具始终以 16 位精度工作 |
-| HDR / EXR | 有 HDR 图层与 EXR 导入/导出路径；显示效果取决于素材、显示器和系统。未完成完整 HDR 工作流验证 |
-| 导出 | PNG、JPEG、TIFF、单页 PDF、EXR；没有 PSD/PSB 导出，不提供 Photoshop 的无损往返编辑保证 |
-| `.comp` | 原生项目保留图层等编辑信息。中文显示不改变混合模式等内部英文标识；跨版本使用前建议备份 |
+| JPEG、PNG、HEIC/HEIF、TIFF、WebP | 支持导入，具体解码依赖系统框架 |
+| SVG | 导入时转换为像素图像，不保持矢量编辑能力 |
+| PSD / PSB | 支持 8 位 RGB、8 位 CMYK 的分层读取；部分内容可能栅格化或降级，导入时查看转换报告 |
+| 16 位与 HDR | 部分 PNG/TIFF 与 EXR 路径支持；并非所有工具都保持 16 位精度，也不代表支持 16 位分层 PSD |
+| 导出 | PNG、JPEG、TIFF、单页 PDF、EXR；暂不支持 PSD/PSB 导出 |
 
-复杂 PSD 的智能对象、特殊效果、字体和色彩结果可能与 Photoshop 不同，不能将本项目视为 Photoshop 的完全兼容替代品。大型文件还受内存与应用文档尺寸预算限制。
+复杂 PSD 中的智能对象、特殊效果、字体和色彩可能存在差异。当前尚未完成全部相机 RAW、复杂 PSD 和 HDR 场景验证；建议先使用文件副本试用。部分动态提示仍可能显示英文。测试范围见[基础验证](docs/validation-zh.md)与[裁剪验证](docs/validation-crop-zh.md)。
 
-## 中文化范围与已知限制
+## 反馈与开发
 
-首版包含 **1128 条翻译**，覆盖主要菜单、工具、RAW 调色面板、混合模式、保存导出和大量帮助提示。部分动态错误提示仍可能显示英文；用户自己填写的图层名、文件名不会自动翻译。
+欢迎在 [Issues](https://github.com/qidian2022/Compositor-ZH/issues) 反馈问题，请附上应用版本、macOS 版本、芯片型号、复现步骤和不含隐私的截图。
 
-发布前的验证及未测范围记录在 [验证说明](docs/validation-zh.md)。目前未完成完整上游 Xcode 测试套件、全部 PSD 样本、相机 RAW 和 HDR 工作流测试，请先用文件副本试用。
-
-## 从源码构建
-
-不需要先安装英文版。资源全部来自仓库，不依赖私人路径或开发者证书。可使用匹配的 Apple Command Line Tools/macOS SDK 构建；也保留 Xcode 工程。
-
-```sh
-git clone --branch zh-Hans https://github.com/qidian2022/Compositor-ZH.git
-cd Compositor-ZH
-python3 localization/build.py
-```
-
-产物位于 `build/Compositor 中文版.app`。如果工具链包含多个 SDK，可通过 `--sdk` 指定匹配版本；详见 [构建与打包说明](docs/build-zh.md)。
-
-## 反馈与贡献
-
-请到 [本仓库 Issues](https://github.com/qidian2022/Compositor-ZH/issues) 提交问题，附上中文版版本号、macOS 版本、芯片、复现步骤和不含隐私的截图。文件兼容问题可使用最小化的公开测试文件；不要上传私人照片、客户素材或账号信息。
-
-翻译源在 `localization/zh-Hans.tsv`。修改后运行 `python3 localization/generate.py`，并提交生成的资源文件。不要修改枚举原值、快捷键内部标识或项目序列化字段来翻译界面。
+源码构建与一键生成 DMG/ZIP 的方法见[构建与发布说明](docs/build-zh.md)。
 
 ## 开源许可与致谢
 
-MIT 许可，见 [LICENSE](LICENSE) 与 [NOTICE](NOTICE.md)。感谢 **Robbie Tilton / Wonder Assembly LLC** 开源 Compositor。本仓库保留上游 Git 历史、版权及许可，是独立中文分支；中文分支的问题请在这里反馈。
+本项目是 [Compositor](https://github.com/robbietilton/Compositor) 的独立中文分支，基于 v1.5.3，感谢 **Robbie Tilton / Wonder Assembly LLC** 开源原项目。保留原项目 Git 历史、版权及 MIT 许可，详见 [LICENSE](LICENSE) 与 [NOTICE](NOTICE.md)。
 
-Photoshop 和 Adobe Camera Raw 是 Adobe 的产品名称。本项目与 Adobe 无关联。
+本项目与 Adobe 无关联，不是 Adobe Photoshop，也不使用 Adobe Camera Raw 引擎。
