@@ -1132,3 +1132,10 @@ Show Crop Mask	显示裁剪蒙版
 Remove Crop Mask	移除裁剪蒙版
 Original uses the first imported photo’s ratio; Free never locks the ratio.	原始比例取首次导入照片的比例；自由模式不锁定比例。
 Applies to the whole canvas. Hide or remove to restore the full image without discarding edits.	作用于整个画布。隐藏或移除可恢复完整画面，并保留当前编辑。
+Select Background	选择背景
+Subject to New Layer	主体到新图层
+Background to New Layer	背景到新图层
+Separate Subject and Background	分离主体与背景
+AI Subject & Background	AI 主体与背景
+AI Select	AI 选择
+Extract from one image layer on this Mac. New layers keep editable masks; the original is kept hidden.	在本机识别当前单个图像图层。结果新建为带可编辑蒙版的图层，原图保留并隐藏。

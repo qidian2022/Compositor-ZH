@@ -11,15 +11,15 @@ nonisolated enum SubjectRemoval {
     private static let cache = MaskCache()
     private final class MaskCache: @unchecked Sendable {
         private let lock = NSLock()
-        private var key: ObjectIdentifier?
+        private var source: CGImage?
         private var value: CGImage?
         func mask(for image: CGImage, make: () throws -> CGImage) throws -> CGImage {
             lock.lock()
-            let hit = key == ObjectIdentifier(image) ? value : nil
+            let hit = source === image ? value : nil
             lock.unlock()
             if let hit { return hit }
             let made = try make()
-            lock.lock(); key = ObjectIdentifier(image); value = made; lock.unlock()
+            lock.lock(); source = image; value = made; lock.unlock()
             return made
         }
     }
@@ -86,15 +86,7 @@ nonisolated enum SubjectRemoval {
     /// mask that hides the background instead of erasing it. `under` is the layer's existing mask, kept as well.
     static func subjectMask(_ image: CGImage, under existing: CGImage?, settings: FilterSettings) throws -> CGImage {
         let subject = try refined(vision(image), guide: image, settings: settings, limit: .greatestFiniteMagnitude)
-        guard let existing else { return subject }
-        // Both masks hide: what either one hides stays hidden.
-        let context = try BrushRaster.context(width: image.width, height: image.height, mask: true)
-        let bounds = CGRect(x: 0, y: 0, width: image.width, height: image.height)
-        BrushRaster.draw(existing, in: bounds, mask: true, context: context)
-        context.setBlendMode(.multiply)
-        context.draw(subject, in: bounds)
-        guard let combined = context.makeImage() else { throw ExportError.render }
-        return combined
+        return try SubjectExtraction.mask(from: subject, region: .subject, under: existing)
     }
 
     /// The preview: the layer with its background made transparent by the same mask the commit lays down.
@@ -114,30 +106,31 @@ nonisolated enum SubjectRemoval {
 extension EditorSession {
     /// Select → Subject: the foreground Vision finds in the canvas as it is shown, outlined as a selection. The
     /// same shape Remove Background masks out, as a selection instead.
-    var canSelectSubject: Bool { canEditSelection && document != nil && !isProjectBusy }
+    var canSelectSubject: Bool {
+        canEditSelection && document != nil && !isProjectBusy && selectionMoveOrigin == nil && lassoDraft == nil
+    }
 
-    func selectSubject(mode: SelectionMode = .replace) async {
+    func selectSubject(region: SubjectRegion = .subject, mode: SelectionMode = .replace) async {
         guard canSelectSubject, let document,
               let context = try? BrushRaster.context(width: document.width, height: document.height, mask: false) else { return }
         drawLiveComposite(document, in: context)
         guard let shown = context.makeImage() else { return }
+        let canvasSize = document.size
         isProjectBusy = true
-        let found = await Task.detached(priority: .userInitiated) { () -> Result<CGImage, Error> in
-            do { return .success(try SubjectRemoval.subjectMask(shown, under: nil, settings: FilterSettings())) }
+        let found = await Task.detached(priority: .userInitiated) { () -> Result<CGPath, Error> in
+            do {
+                let mask = try SubjectRemoval.subjectMask(shown, under: nil, settings: FilterSettings())
+                return .success(try SubjectExtraction.outline(from: mask, region: region, canvas: canvasSize))
+            }
             catch { return .failure(error) }
         }.value
         isProjectBusy = false
-        guard self.document?.id == document.id else { return }
+        guard !Task.isCancelled, self.document == document else { return }
         switch found {
         case .failure(let error):
             brushError = error.localizedDescription
-        case .success(let mask):
-            // White where the subject is, so its outline is the selection.
-            guard let traced = MaskTracing.whitePixels(in: mask) else { NSSound.beep(); return }
-            var toDocument = BrushRaster.pixelToDocument(LayerTransform(origin: .zero, size: document.size),
-                                                         width: mask.width, height: mask.height)
-            guard let outline = traced.copy(using: &toDocument) else { return }
-            applySelection(outline, mode: mode, name: "Select Subject")
+        case .success(let outline):
+            applySelection(outline, mode: mode, name: region.selectionName)
         }
     }
 }
