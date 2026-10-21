@@ -276,6 +276,8 @@ struct CompositorApp: App {
                     Button(zh("Subject")) { Task { await session.selectSubject() } }
                         .configuredKeyboardShortcut("a", modifiers: [.command, .option])
                         .disabled(!session.canSelectSubject)
+                    Button(zh("Background")) { Task { await session.selectSubject(region: .background) } }
+                        .disabled(!session.canSelectSubject)
                     Button(zh("Color Range…")) { session.beginColorRange() }
                         .disabled(!session.canSelectColorRange)
                     Button(zh("Mask's Black Areas")) {
@@ -338,6 +340,8 @@ struct CompositorApp: App {
                     }
                 }
                 CommandMenu(zh("Layer")) {
+                    Menu(zh("AI Subject & Background")) { SubjectLayerCommands(session: session) }
+                    Divider()
                     Menu(zh("New Adjustment Layer")) {
                         ForEach(AdjustmentKind.allCases, id: \.self) { kind in
                             Button(zh(kind.rawValue + (kind.isEditable ? "…" : ""))) { session.addAdjustment(kind) }

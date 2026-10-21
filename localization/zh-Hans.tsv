@@ -1141,3 +1141,10 @@ The AI denoise model is missing. Reinstall the application.	AI 降噪模型缺�
 The AI denoise model could not be loaded. Reinstall the application.	无法载入 AI 降噪模型，请重新安装应用。
 AI Denoise supports SDR photo layers. Convert the HDR image to SDR first.	AI 降噪支持 SDR 照片图层，请先将 HDR 图像转换为 SDR。
 AI Denoise could not process this image.	AI 降噪无法处理这张图像。
+Select Background	选择背景
+Subject to New Layer	主体到新图层
+Background to New Layer	背景到新图层
+Separate Subject and Background	分离主体与背景
+AI Subject & Background	AI 主体与背景
+AI Select	AI 选择
+Extract from one image layer on this Mac. New layers keep editable masks; the original is kept hidden.	在本机识别当前单个图像图层。结果新建为带可编辑蒙版的图层，原图保留并隐藏。

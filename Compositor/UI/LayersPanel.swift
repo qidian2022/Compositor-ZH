@@ -45,6 +45,8 @@ struct LayersPanel: View {
             }
             LayerAppearanceControls(session: session, layerID: session.activeLayerID).id(session.activeLayerID)
             Divider()
+            SubjectActionsMenu(session: session)
+            Divider()
             if let layers = session.document?.layers, !layers.isEmpty {
                 NativeLayerList(session: session)
             } else {

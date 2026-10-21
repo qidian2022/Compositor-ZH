@@ -53,6 +53,14 @@ struct LassoControls: View {
                             .help(zh(session.tool == .wand && session.wandMode == .object ? "Smooth the detected object outline; turn off for the raw pixel mask" : "Smooth selection edges; turn off for hard pixel edges"))
                     }
                     Divider().frame(height: 18)
+                    Menu(zh("AI Select")) {
+                        ForEach(SubjectRegion.allCases, id: \.self) { region in
+                            Button(zh(region.selectionName)) {
+                                Task { await session.selectSubject(region: region, mode: session.selectionModeChoice) }
+                            }
+                        }
+                    }
+                    .fixedSize().disabled(!session.canSelectSubject)
                     modifyControl("Expand", amount: $session.selectionExpandAmount) {
                         session.expandSelection(by: session.selectionExpandAmount)
                     }
