@@ -9,3 +9,5 @@ Compositor-ZH 是 [Compositor](https://github.com/robbietilton/Compositor) 的�
 本分支主要提供中文界面、独立应用标识、无需已安装原版的构建脚本和中文说明，并移除了上游 Sparkle 自动更新链路。它不是 Adobe Photoshop，也不由 Adobe 或上游作者背书。“免费中文版 PS”仅描述面向中文用户的 Photoshop 替代使用场景。
 
 发布的 macOS 应用仅作 ad-hoc 临时签名，没有 Apple Developer ID 签名或 Apple 公证。界面和功能的兼容范围见 README。请到本仓库反馈中文分支的问题，不要向上游提交汉化支持请求。
+
+AI 照片降噪使用 [KAIR / FFDNet](https://github.com/cszn/KAIR) 的彩色预训练模型，Copyright (c) 2019 Kai Zhang，采用 MIT 许可。转换后的 Core ML 模型和相应许可证随应用分发，见 `Compositor/Resources/LICENSE-FFDNet.txt`。交互参考 Adobe 的公开文档；不包含 Adobe 的专有模型或代码。

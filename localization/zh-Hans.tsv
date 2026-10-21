@@ -1132,3 +1132,12 @@ Show Crop Mask	显示裁剪蒙版
 Remove Crop Mask	移除裁剪蒙版
 Original uses the first imported photo’s ratio; Free never locks the ratio.	原始比例取首次导入照片的比例；自由模式不锁定比例。
 Applies to the whole canvas. Hide or remove to restore the full image without discarding edits.	作用于整个画布。隐藏或移除可恢复完整画面，并保留当前编辑。
+AI Denoise	AI 照片降噪
+Reduce photo noise with AI while preserving detail. Photos are processed on this Mac.	使用 AI 减少照片噪点并保留细节。照片在本机处理，无需上传。
+Zoom to 100% to judge fine detail. Turn Preview off to compare with the original.	放大至 100% 检查细节。关闭“预览”可与原图对比。
+Denoising…	正在降噪…
+Retry	重试
+The AI denoise model is missing. Reinstall the application.	AI 降噪模型缺失，请重新安装应用。
+The AI denoise model could not be loaded. Reinstall the application.	无法载入 AI 降噪模型，请重新安装应用。
+AI Denoise supports SDR photo layers. Convert the HDR image to SDR first.	AI 降噪支持 SDR 照片图层，请先将 HDR 图像转换为 SDR。
+AI Denoise could not process this image.	AI 降噪无法处理这张图像。

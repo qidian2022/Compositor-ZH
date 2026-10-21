@@ -16,10 +16,14 @@ jobs:
         run: python3 localization/generate.py --check
       - name: Crop regression checks
         run: python3 localization/test_crop.py
+      - name: AI denoise regression checks
+        run: python3 localization/test_ai_denoise.py
       - name: Build from source resources
         run: python3 localization/build.py
       - name: Verify bundle and signature
         run: |
           test -s 'build/Compositor 中文版.app/Contents/Resources/ChineseLocalization.json'
           test -s 'build/Compositor 中文版.app/Contents/Resources/CameraRawTables.bin'
+          test -s 'build/Compositor 中文版.app/Contents/Resources/FFDNetColor.mlmodel'
+          test -s 'build/Compositor 中文版.app/Contents/Resources/LICENSE-FFDNet.txt'
           codesign --verify --deep --strict 'build/Compositor 中文版.app'

@@ -121,6 +121,20 @@ struct FilterSheet: View {
                     .pickerStyle(.segmented).labelsHidden()
                 }
                 Toggle(zh("Monochromatic"), isOn: flag(\.monochromatic))
+            case .aiDenoise:
+                Text(zh("Reduce photo noise with AI while preserving detail. Photos are processed on this Mac."))
+                    .fixedSize(horizontal: false, vertical: true)
+                control("Amount", \.denoiseAmount, range: 0...100, unit: "%", decimals: 0, logarithmic: false)
+                Text(zh("Zoom to 100% to judge fine detail. Turn Preview off to compare with the original."))
+                    .font(.callout).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+                if edit?.preparing == true {
+                    ProgressView(value: edit?.denoiseProgress ?? 0)
+                    Text(zh("Denoising…") + " \(Int((edit?.denoiseProgress ?? 0) * 100))%")
+                        .font(.callout).foregroundStyle(.secondary)
+                }
+                if edit?.previewError != nil {
+                    Button(zh("Retry")) { session.updateFilter(settings, preview: edit?.preview ?? true) }
+                }
             case .dither:
                 ditherControls
             case .scanlines:
