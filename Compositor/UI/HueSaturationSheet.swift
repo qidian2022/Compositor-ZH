@@ -33,8 +33,8 @@ struct HueSaturationSheet: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack(spacing: 12) {
-                Picker("Range", selection: settings.range) {
-                    ForEach(ColorRange.allCases, id: \.self) { Text($0.rawValue).tag($0) }
+                Picker(zh("Range"), selection: settings.range) {
+                    ForEach(ColorRange.allCases, id: \.self) { Text(zh($0.rawValue)).tag($0) }
                 }
                 .pickerStyle(.menu).frame(width: 160).labelsHidden().disabled(current.colorize)
                 Spacer()
@@ -47,25 +47,25 @@ struct HueSaturationSheet: View {
                    track: .opposing(.black, .white), reset: resetValues.lightness)
             if showsSpectrum {
                 SpectrumEditor(settings: settings)
-                Toggle("Apply outside this range instead", isOn: settings.invertRange)
+                Toggle(zh("Apply outside this range instead"), isOn: settings.invertRange)
             }
             HStack(spacing: 18) {
-                Toggle("Colorize", isOn: Binding(get: { current.colorize }, set: { colorize in
+                Toggle(zh("Colorize"), isOn: Binding(get: { current.colorize }, set: { colorize in
                     // Photoshop starts colorizing at hue 0, saturation 25.
                     settings.wrappedValue = colorize ? .colorizeStart : HueSaturationSettings()
                 }))
-                Toggle("Preview", isOn: preview)
-                Button("Reset") { settings.wrappedValue = current.colorize ? .colorizeStart : HueSaturationSettings() }
+                Toggle(zh("Preview"), isOn: preview)
+                Button(zh("Reset")) { settings.wrappedValue = current.colorize ? .colorizeStart : HueSaturationSettings() }
                 Spacer()
             }
             if session.adjustmentOriginal == nil && session.selection != nil {
-                Text("Limited to the selection").font(.callout).foregroundStyle(.secondary)
+                Text(zh("Limited to the selection")).font(.callout).foregroundStyle(.secondary)
             }
             Divider()
             HStack {
-                Button("Cancel") { session.cancelHueSaturation() }.configuredNativeShortcut(.escape)
+                Button(zh("Cancel")) { session.cancelHueSaturation() }.configuredNativeShortcut(.escape)
                 Spacer()
-                Button("OK") { Task { await session.commitHueSaturation() } }
+                Button(zh("OK")) { Task { await session.commitHueSaturation() } }
                     .configuredNativeShortcut(.return).buttonStyle(.borderedProminent)
             }
         }
@@ -87,8 +87,8 @@ struct HueSaturationSheet: View {
                     .buttonStyle(.plain)
                     .background(session.hueSampleMode == mode ? Color.accentColor.opacity(0.25) : .clear,
                                 in: RoundedRectangle(cornerRadius: 4))
-                    .help(mode.help)
-                    .accessibilityLabel("\(mode.rawValue) color")
+                    .help(zh(mode.help))
+                    .accessibilityLabel(zh("\(mode.rawValue) color"))
                 }
                 Divider().frame(height: 16)
             }
@@ -102,8 +102,8 @@ struct HueSaturationSheet: View {
                 .buttonStyle(.plain)
                 .background(session.hueTargeting ? Color.accentColor.opacity(0.25) : .clear,
                             in: RoundedRectangle(cornerRadius: 4))
-                .help("Targeted adjustment: drag on the image to change that color's saturation, or its hue with Command held")
-                .accessibilityLabel("Targeted adjustment")
+                .help(zh("Targeted adjustment: drag on the image to change that color's saturation, or its hue with Command held"))
+                .accessibilityLabel(zh("Targeted adjustment"))
             }
         }
     }
@@ -125,12 +125,12 @@ struct HueSaturationSheet: View {
     private func slider(_ title: String, value: Binding<Double>, range: ClosedRange<Double>, unit: String,
                         track: CameraRawSliderTrack, reset: Double) -> some View {
         HStack(spacing: 10) {
-            Text(title).frame(width: 76, alignment: .leading)
+            Text(zh(title)).frame(width: 76, alignment: .leading)
                 .onTapGesture(count: 2) { value.wrappedValue = reset }
                 .scrubbable(sensitivity: 1, value: value, range: range)
             CameraRawSlider(value: value.wrappedValue, range: range, track: track, help: "\(title). Double-click to reset.",
                             onChange: { value.wrappedValue = $0.rounded() }, onReset: { value.wrappedValue = reset })
-            TextField(title, value: value, format: .number.precision(.fractionLength(0)))
+            TextField(zh(title), value: value, format: .number.precision(.fractionLength(0)))
                 .frame(width: 48).textFieldStyle(.roundedBorder).multilineTextAlignment(.trailing)
                 .unitSuffix(unit)
                 // A field's own submit swallows Return, so it confirms the window itself, as OK does.
@@ -154,7 +154,7 @@ struct SpectrumEditor: View {
             spectrum(after: false)
             handles
             spectrum(after: true)
-            Text(settings.band.handles.map { "\(Int($0.rounded()))°" }.joined(separator: "   "))
+            Text(zh(settings.band.handles.map { "\(Int($0.rounded()))°" }.joined(separator: "   ")))
                 .font(.caption.monospacedDigit()).foregroundStyle(.secondary)
         }
     }

@@ -1,109 +1,111 @@
-# Compositor
+# Compositor 中文版
 
-Adobe Photoshop costs too much and tools like GIMP don’t feel familiar enough for me to stay in flow. That’s why I built Compositor.
+**免费开源的 Mac 中文图片编辑器，用于修图、抠图、海报制作和多图合成。**
 
-The goal was to create a full-featured image editor that is completely free and open source. I used to use Photoshop for compositing and post-processing, so Compositor is built around that workflow - with the tools needed to create a pixel-perfect final image.
+图层、蒙版、选区、画笔、RAW 显影与调色工具集中在一个原生 Mac 界面中，无订阅费用。适合希望使用中文界面、完成日常照片处理和设计工作的用户。
 
-Because it’s open source, you can download the Xcode project and add, remove, or modify any feature to fit your workflow.
+[下载 1.5.3-zh.2](https://github.com/qidian2022/Compositor-ZH/releases/tag/v1.5.3-zh.2) · [反馈问题](https://github.com/qidian2022/Compositor-ZH/issues) · [版本记录](CHANGELOG.md)
 
-## Installation
+![Compositor 中文编辑界面](docs/images/editor-zh.jpg)
 
-### Download
-Get Compositor from [robbietilton.com/compositor](https://robbietilton.com/compositor), or download the latest release directly from [GitHub Releases](https://github.com/robbietilton/Compositor/releases/latest).
+## 主要功能
 
-### Homebrew
+| 用途 | 功能 |
+| --- | --- |
+| 图层合成 | 图层与分组、不透明度、混合模式、图层蒙版、剪贴蒙版、调整图层、合并与复制 |
+| 抠图与选区 | 矩形与椭圆选框、套索、多边形套索、魔棒、对象与主体选择、选区扩展/收缩/羽化 |
+| 修图与绘画 | 画笔、橡皮擦、修复画笔、仿制图章、内容识别填充、模糊、涂抹、液化、吸管 |
+| 裁剪与变换 | 自由裁剪、固定比例裁剪、可隐藏或移除的裁剪蒙版、旋转、翻转、缩放与自由扭曲 |
+| 文字与排版 | 可编辑文字、形状、渐变、标尺、参考线、网格与吸附 |
+| 色彩调整 | 色阶、曲线、曝光、色相与饱和度、色彩平衡、黑白、渐变映射、颗粒与辉光 |
+| RAW 处理 | 相机 RAW 导入显影，以及光线、色彩、曲线、混色、色彩分级、细节与几何调整 |
+| AI 照片降噪 | 本地神经网络降噪、强度调节、原图对比、选区处理，保留透明度和 16 位精度 |
+| 保存与输出 | `.comp` 分层项目保存，PNG、JPEG、TIFF、单页 PDF、EXR 导出，CMYK 软打样与色域警告 |
+| 操作效率 | 多项目标签、撤销与重做、中文命令搜索、可自定义快捷键 |
+
+### 新版裁剪
+
+“自由”模式可以独立调整宽高；“原始比例”采用首次导入照片的比例，不会随着后续裁剪改变。
+
+应用裁剪后，右侧图层面板会出现“裁剪蒙版”。点击眼睛可以隐藏或显示，点击垃圾桶可以移除。隐藏或移除后恢复完整画布；启用时，导出图片按裁剪框缩小尺寸。裁剪状态可以随项目保存，支持撤销与重做。
+
+裁剪本身保留源图像和已有图层蒙版。若后续需要合并图层等破坏性操作，并希望保留画布外内容，请先隐藏裁剪蒙版。
+
+## 下载与安装
+
+**系统要求：Apple Silicon（M 系列芯片），macOS 26.0 或更新版本。** 暂不提供 Intel Mac 或 Windows 版本。
+
+### 使用 DMG 安装（推荐）
+
+1. 打开[下载页面](https://github.com/qidian2022/Compositor-ZH/releases/tag/v1.5.3-zh.2)，在 **Assets** 中下载 `Compositor-ZH-1.5.3-zh.2-arm64.dmg`。
+2. 双击 DMG，将 **Compositor 中文版.app** 拖入窗口里的 **Applications（应用程序）**。
+3. 从 Finder 的“应用程序”文件夹打开 **Compositor 中文版**。
+4. 安装完成后，可以推出安装磁盘，并删除下载的 DMG。
+
+也可以下载同版本 `.zip`，解压后将应用拖入“应用程序”。**Source code 是源码包，普通安装无需下载。**
+
+### 首次打开被系统拦截怎么办？
+
+当前为预览版，仅采用 ad-hoc 临时签名，尚无 Developer ID 签名及 Apple 公证。确认安装包来自本仓库后：
+
+1. 先双击尝试打开应用。
+2. 若提示无法验证开发者，或 Apple 无法检查是否包含恶意软件，进入 **系统设置 → 隐私与安全性**。
+3. 找到该应用的提示，点击 **仍要打开**，按提示确认；可能需要密码或 Touch ID。
+4. 放行后，通常可以直接双击启动。
+
+无需关闭 Gatekeeper 或更改全局安全设置。若提示“应用已损坏”，请重新下载或到 Issues 反馈；受公司或学校管理的电脑可能不允许手动放行。参见 [Apple 官方操作说明](https://support.apple.com/zh-cn/102445)。
+
+### 更新软件
+
+保存正在编辑的项目并退出软件，下载新版本，再将应用拖入“应用程序”并选择替换。当前采用手动更新，可在 [Releases](https://github.com/qidian2022/Compositor-ZH/releases) 查看新版。
+
+<details>
+<summary>可选：核对下载完整性</summary>
+
+把安装包和同一版本的 `SHA256SUMS.txt` 放在同一文件夹，在该文件夹打开终端并运行：
 
 ```sh
-brew install --cask robbietilton-compositor
+shasum -a 256 --ignore-missing -c SHA256SUMS.txt
 ```
 
-## Features
+对应文件显示 `OK` 即表示校验一致。校验值用于检查下载完整性，不代表 Apple 安全认证。
 
-### Layers
-- Layers and folders, with opacity and Photoshop's full set of blend modes in its order — a folder's opacity dims everything inside it
-- Layer masks: paint, fill, invert, blur and feather them anywhere on the canvas, past the layer's own pixels; link or unlink them to transform a mask on its own
-- Clipping masks and folder masks
-- Adjustment layers: Hue/Saturation, Levels, Curves, Exposure, Gradient Map, Grain, Black & White, Color Balance, Invert, Gaussian Blur, Motion Blur and Noise
-- Layer effects: Stroke, Drop Shadow, Color Overlay, Inner Shadow, Outer Glow and Inner Glow, rendered on the GPU and editable at any time
-- Merge Down, Merge Layers and Merge Group (⌘E)
-- Duplicate, rename inline, reorder and nest by drag and drop; Option-drag to duplicate; a right-click menu in the Layers panel
-- Copy and paste whole layers and folders (⌘C/⌘V with no selection), within a project or between projects, or drag them between projects
+</details>
 
-### Transform
-- Non-destructive move, scale, rotate and flip — images keep their full resolution however small you make them
-- Free distort (⌘-drag a handle), with Shift to lock to an axis
-- Transform several layers, or a whole folder, together
-- Snapping to canvas and layer edges and centers, with guides
-- Exact values for position, size, scale and angle, stepped with the arrow keys
-- Flip Layer and Flip Canvas, horizontal and vertical
+## 快速开始
 
-### Selections
-- Rectangle and Ellipse Marquee, Freehand and Polygonal Lasso, and the Magic tool — Wand selects by color, Object traces whatever you click (Tab switches)
-- Select Subject, and Expand, Contract and Feather on any selection
-- Add to and subtract from selections, move the outline, or move and duplicate the pixels inside
-- Load a layer's pixels or a mask as a selection
-- Content-Aware Fill, which can also extend an image past its edges
+1. 打开图片，或新建画布后把图片拖进去。
+2. 使用左侧工具处理图片，在右侧图层面板调整顺序、混合模式和蒙版。
+3. 修照片时使用调色工具；做海报时添加文字、形状和多张图片。
+4. 按 `⌘S` 保存为 `.comp` 项目，以便继续编辑。
+5. 从“文件”菜单导出图片；`⇧⌘E` 导出 PNG，`⇧⌥⌘S` 导出 JPEG。
 
-### Painting and retouching
-- Brush with size, hardness, opacity and smoothing, in Paint or Erase mode (B and E), and Shift for straight lines
-- Spot Healing Brush (content-aware)
-- Clone Stamp, aligned or not, sampling one layer or all of them
-- Blur tool, on pixels or masks
-- Gradient tool and Shape tool (rectangles, rounded rectangles, ellipses and lines), which stay editable rather than being rasterized
-- Type tool (T): inline multiline editing in draggable, resizable paragraph boxes; font, size, color, alignment and spacing in the tool header; transform text and use it as a clipping mask
-- Eyedropper and a full color picker
+常用快捷键：`V` 移动、`B` 画笔、`E` 橡皮擦、`T` 文字、`⌘Z` 撤销。找不到工具时，可按 `⌘F` 搜索中文命令。
 
-### Adjustments and filters
-- Camera Raw filter: light, color, curves, color mixer, color grading, detail, optics and geometry, in a panel beside the canvas; each section resets to its defaults from its header
-- Levels (with Auto), Curves, Hue/Saturation, Exposure, Gradient Map, Grain, Black & White, Color Balance and Invert
-- Gaussian Blur and Motion Blur that spread past a layer's edges
-- Add Noise, Vignette, Bloom / Glow, Dither, Scanlines, Tonal Contrast, Lens Correction and Remove Background
-- Live previews, limited to the selection when there is one
-- Last Filter (⌃⌘F) runs the last filter again with the same settings
+## RAW 与文件格式
 
-### Canvas and files
-- Multiple projects in tabs
-- Search Commands (⌘F): find every menu command and tool by name, as in Raycast or Obsidian, and run it with Return
-- Toggle Fullscreen (F): the canvas alone on black over the whole screen, with every panel put away; F or Esc brings them back
-- Rulers (⌘R), guides dragged from them, a layout grid with adjustable spacing and subdivisions, and Snap To for guides, grid, layers and document bounds
-- Crop with snapping, ratios including 3:4 and 9:16, and Option for symmetric cropping; with a selection, the crop starts at it
-- Canvas Size, Image Size and Trim
-- A Navigator minimap in the canvas's corner from 300% zoom: the whole document in small with a box around the view; click or drag to move there (View › Navigator)
-- Sharp high-quality downsampling when zoomed out, and a pixel grid when zoomed in
-- Import JPEG, PNG, HEIC, TIFF, WebP, SVG, camera RAW (with a develop step first) and Photoshop PSD and PSB (8-bit RGB; not CMYK). Photoshop folders, masks, blend modes, fill rectangles/ellipses, and simple horizontal text stay editable; other vectors and vertical text become pixels. A conversion report is shown before anything is applied.
-- Large documents: the memory budget scales with your Mac, and a Photoshop file too big to open has its layers cropped to the canvas instead
-- Export PNG (⇧⌘E), Export JPEG (⇧⌥⌘S), and Export As (⇧⌥⌘W) for PNG, JPEG or a one-page PDF at the print size, scaled if you like, with a live preview, JPEG quality and file size; Copy Merged
-- Keep working while a project saves
-- Photoshop-style keyboard shortcuts throughout, remappable in Edit > Keyboard Shortcuts
-- Drag a number's label to scrub its value, as in Photoshop
-- Automatic updates, signed and notarized
+RAW 导入显影读取相机原始数据，可调整曝光、白平衡、色调和降噪；镜头校正与高光恢复取决于文件及系统支持。相机兼容性由 macOS 的 RAW 支持决定，可查阅 [Apple 相机支持列表](https://support.apple.com/zh-cn/122870)。建议始终保留原始 RAW 文件。
 
-### Works with AI agents
-- AI agents and scripts can build and edit projects directly: a `.comp` is a folder of PNG layers and a manifest, and an open project updates live as it's written. See [Writing Compositor projects](docs/writing-comp-files.md)
+导入后的 RAW 调色滤镜也可用于 JPEG、PNG 等图片，但不会把普通图片变回 RAW。
 
-## Requirements
+| 格式 | 支持情况 |
+| --- | --- |
+| JPEG、PNG、HEIC/HEIF、TIFF、WebP | 支持导入，具体解码依赖系统框架 |
+| SVG | 导入时转换为像素图像，不保持矢量编辑能力 |
+| PSD / PSB | 支持 8 位 RGB、8 位 CMYK 的分层读取；部分内容可能栅格化或降级，导入时查看转换报告 |
+| 16 位与 HDR | 部分 PNG/TIFF 与 EXR 路径支持；并非所有工具都保持 16 位精度，也不代表支持 16 位分层 PSD |
+| 导出 | PNG、JPEG、TIFF、单页 PDF、EXR；暂不支持 PSD/PSB 导出 |
 
-- macOS 26.0 or later on a Mac with Apple silicon
-- Xcode 26 or later (to build from source)
+复杂 PSD 中的智能对象、特殊效果、字体和色彩可能存在差异。当前尚未完成全部相机 RAW、复杂 PSD 和 HDR 场景验证；建议先使用文件副本试用。部分动态提示仍可能显示英文。测试范围见[基础验证](docs/validation-zh.md)与[裁剪验证](docs/validation-crop-zh.md)。
 
-## Translations
+## 反馈与开发
 
-Compositor is English only for now, and translation pull requests aren't being accepted. It's maintained by one person, every new string would need translating from then on, and translations in languages I don't read can't be reviewed. I'll revisit this once the app settles; until then, please don't open localization PRs.
+欢迎在 [Issues](https://github.com/qidian2022/Compositor-ZH/issues) 反馈问题，请附上应用版本、macOS 版本、芯片型号、复现步骤和不含隐私的截图。
 
-## Building
+源码构建与一键生成 DMG/ZIP 的方法见[构建与发布说明](docs/build-zh.md)。
 
-Open `Compositor.xcodeproj` and run the **Compositor** scheme.
+## 开源许可与致谢
 
-## Releasing
+本项目是 [Compositor](https://github.com/robbietilton/Compositor) 的独立中文分支，基于 v1.5.3，感谢 **Robbie Tilton / Wonder Assembly LLC** 开源原项目。保留原项目 Git 历史、版权及 MIT 许可，详见 [LICENSE](LICENSE) 与 [NOTICE](NOTICE.md)。
 
-`scripts/release.sh` builds a Release version, signs it with Developer ID, notarizes and staples it, and packages it into `dist/Compositor-<version>.dmg`.
-
-It needs, all kept outside this repository:
-
-- a **Developer ID Application** certificate in the login keychain
-- notarization credentials saved with `xcrun notarytool store-credentials "compositor-notary" …`
-- [`create-dmg`](https://github.com/create-dmg/create-dmg) (`brew install create-dmg`)
-
-## License
-
-MIT — see [LICENSE](LICENSE).
+本项目与 Adobe 无关联，不是 Adobe Photoshop，也不使用 Adobe Camera Raw 引擎。

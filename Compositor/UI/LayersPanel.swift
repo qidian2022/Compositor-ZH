@@ -11,12 +11,38 @@ struct LayersPanel: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack {
-                Text("Layers").font(.system(size: 12, weight: .semibold))
+                Text(zh("Layers")).font(.system(size: 12, weight: .semibold))
                 Spacer()
-                Text("\(session.document?.layers.count ?? 0)").font(.caption.monospacedDigit()).foregroundStyle(.tertiary)
+                Text(zh("\(session.document?.layers.count ?? 0)")).font(.caption.monospacedDigit()).foregroundStyle(.tertiary)
                     .accessibilityIdentifier("layerCount")
             }.padding(18)
             Divider()
+            if let crop = session.document?.cropMask {
+                HStack(spacing: 8) {
+                    Button { Task { await session.toggleCropMask() } } label: {
+                        Image(systemName: crop.isEnabled ? "eye" : "eye.slash").frame(width: 24, height: 28)
+                    }
+                    .accessibilityLabel(zh(crop.isEnabled ? "Hide Crop Mask" : "Show Crop Mask"))
+                    .accessibilityIdentifier("toggleCropMask")
+                    Image(systemName: "crop")
+                    VStack(alignment: .leading, spacing: 3) {
+                        Text(zh("Crop Mask")).font(.system(size: 12, weight: .medium))
+                        Text("\(Int(crop.rect.width)) × \(Int(crop.rect.height)) px")
+                            .font(.caption.monospacedDigit()).foregroundStyle(.secondary)
+                    }
+                    Spacer(minLength: 0)
+                    Button { Task { await session.removeCropMask() } } label: {
+                        Image(systemName: "trash").frame(width: 24, height: 28)
+                    }
+                    .accessibilityLabel(zh("Remove Crop Mask"))
+                    .accessibilityIdentifier("removeCropMask")
+                }
+                .buttonStyle(.plain).padding(.horizontal, 12).padding(.vertical, 10)
+                .background(.primary.opacity(0.04))
+                .help(zh("Applies to the whole canvas. Hide or remove to restore the full image without discarding edits."))
+                .disabled(!session.canStartProjectOperation)
+                Divider()
+            }
             LayerAppearanceControls(session: session, layerID: session.activeLayerID).id(session.activeLayerID)
             Divider()
             if let layers = session.document?.layers, !layers.isEmpty {
@@ -24,8 +50,8 @@ struct LayersPanel: View {
             } else {
                 VStack(spacing: 10) {
                     Image(systemName: "square.3.layers.3d").font(.system(size: 25, weight: .light))
-                    Text("No layers yet").font(.callout.weight(.medium))
-                    Text(session.document == nil ? "Create a canvas or import an image." : "Import an image or add a blank layer.")
+                    Text(zh("No layers yet")).font(.callout.weight(.medium))
+                    Text(zh(session.document == nil ? "Create a canvas or import an image." : "Import an image or add a blank layer."))
                         .font(.caption).multilineTextAlignment(.center)
                 }
                 .foregroundStyle(.secondary).padding(16)
@@ -35,29 +61,29 @@ struct LayersPanel: View {
             // No spacing: each button's hit area supplies it (8 pt either side makes the 16 pt gap).
             HStack(spacing: 0) {
                 Button { session.addBlankLayer() } label: { FooterIcon(systemName: "plus.square") }
-                    .help("New blank layer (⇧⌘N)").accessibilityLabel("New blank layer")
+                    .help(zh("New blank layer (⇧⌘N)")).accessibilityLabel(zh("New blank layer"))
                     .accessibilityIdentifier("addBlankLayer").disabled(!session.layersLookEditable)
                 Button { session.groupSelectedLayers() } label: { FooterIcon(systemName: "folder.badge.plus") }
-                    .help("Group selected layers (⌘G)").accessibilityLabel("New folder").disabled(!session.layersLookEditable)
+                    .help(zh("Group selected layers (⌘G)")).accessibilityLabel(zh("New folder")).disabled(!session.layersLookEditable)
                 LayerMaskMenu(session: session)
                 Menu {
                     ForEach(AdjustmentKind.allCases, id: \.self) { kind in
-                        Button(kind.rawValue) { session.addAdjustment(kind) }
+                        Button(zh(kind.rawValue)) { session.addAdjustment(kind) }
                     }
                 } label: { Image(systemName: "circle.lefthalf.filled").footerHitArea() }
-                    .menuStyle(.borderlessButton).fixedSize().help("New adjustment layer").disabled(!session.layersLookEditable)
+                    .menuStyle(.borderlessButton).fixedSize().help(zh("New adjustment layer")).disabled(!session.layersLookEditable)
                 Menu {
                     ForEach(LayerEffectKind.allCases, id: \.self) { kind in
-                        Button(kind.rawValue + "…") { session.addEffect(kind) }
+                        Button(zh(kind.rawValue + "…")) { session.addEffect(kind) }
                     }
                 } label: { Image(systemName: "sparkles").footerHitArea() }
                     .menuStyle(.borderlessButton).fixedSize()
-                    .help("Add layer effect").accessibilityLabel("Layer effects")
+                    .help(zh("Add layer effect")).accessibilityLabel(zh("Layer effects"))
                     .accessibilityIdentifier("layerEffects").disabled(!session.layersLookEditable || session.activeLayer?.isGroup != false || session.activeLayer?.asset == nil)
                 Spacer()
                 Button { session.deleteLayerOrMask() } label: { FooterIcon(systemName: "trash") }
-                    .help(session.selectedEffect != nil ? "Delete selected effect" : session.isMaskSelected ? "Delete layer mask" : session.selectedLayerIDs.count > 1 ? "Delete selected layers" : "Delete selected layer")
-                    .accessibilityLabel(session.selectedEffect != nil ? "Delete selected effect" : session.isMaskSelected ? "Delete layer mask" : session.selectedLayerIDs.count > 1 ? "Delete selected layers" : "Delete selected layer")
+                    .help(zh(session.selectedEffect != nil ? "Delete selected effect" : session.isMaskSelected ? "Delete layer mask" : session.selectedLayerIDs.count > 1 ? "Delete selected layers" : "Delete selected layer"))
+                    .accessibilityLabel(zh(session.selectedEffect != nil ? "Delete selected effect" : session.isMaskSelected ? "Delete layer mask" : session.selectedLayerIDs.count > 1 ? "Delete selected layers" : "Delete selected layer"))
                     .accessibilityIdentifier("deleteLayer")
                     .disabled(!session.layersLookEditable || session.activeLayer == nil)
             }

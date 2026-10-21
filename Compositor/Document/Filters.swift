@@ -9,6 +9,7 @@ nonisolated enum FilterKind: String, CaseIterable, Sendable {
     case motionBlur = "Motion Blur"
     case progressiveBlur = "Progressive Blur"
     case addNoise = "Add Noise"
+    case aiDenoise = "AI Denoise"
     case vignette = "Vignette"
     case bloomGlow = "Bloom / Glow"
     case dither = "Dither"
@@ -24,12 +25,11 @@ nonisolated enum FilterKind: String, CaseIterable, Sendable {
     case grain = "Grain"
     case blackWhite = "Black & White"
     case colorBalance = "Color Balance"
-    var isAutomatic: Bool { self == .contentAwareFill || self == .removeBackground }
+    var isAutomatic: Bool { self == .contentAwareFill || self == .removeBackground || self == .aiDenoise }
     /// The Filter menu's own filters, which Last Filter can run again; not Content-Aware Fill or the Image menu's.
     var repeatsAsLastFilter: Bool { self != .contentAwareFill && !isImageAdjustment }
-    /// Filters made wholly in Core Image, which works at 16 bits as readily as at 8: a 16-bit layer runs them once, on its
-    /// 16-bit pixels, rather than three times through `DeepLayer.run`.
-    var runsAtSixteenBits: Bool { self == .gaussianBlur || self == .motionBlur || self == .progressiveBlur || self == .bloomGlow }
+    /// Filters that accept 16-bit pixels directly, rather than three times through `DeepLayer.run`.
+    var runsAtSixteenBits: Bool { self == .gaussianBlur || self == .motionBlur || self == .progressiveBlur || self == .bloomGlow || self == .aiDenoise }
     /// Filters whose output channels each depend on all three input channels (Camera Raw's color, and the ones that work
     /// from brightness), which a 16-bit layer runs the slower, channel-by-channel way (`DeepLayer.run`).
     var mixesChannels: Bool { self == .cameraRaw || self == .tonalContrast || self == .scanlines }
@@ -88,6 +88,8 @@ nonisolated struct FilterSettings: Equatable, Sendable {
     var gaussian = false
     /// Add Noise changes brightness only, the same amount on every channel.
     var monochromatic = false
+    /// FFDNet's noise level, from 0 (unchanged) to 50/255, shown as an Amount percentage.
+    var denoiseAmount: Double = 50
     /// Standalone vignette: edge color, strength, and shape of its falloff.
     var vignetteAmount: Double = 35
     var vignetteColor = AdjustmentColor(red: 0, green: 0, blue: 0)
@@ -135,6 +137,7 @@ nonisolated struct FilterSettings: Equatable, Sendable {
         result.progressiveFrom = clamp(progressiveFrom, 0...250, 0)
         result.progressiveTo = clamp(progressiveTo, 0...250, 20)
         result.amount = clamp(amount, 0.1...400, 10)
+        result.denoiseAmount = clamp(denoiseAmount, 0...100, 50)
         result.vignetteAmount = clamp(vignetteAmount, 0...100, 35)
         result.vignetteColor = vignetteColor.clamped
         result.vignetteMidpoint = clamp(vignetteMidpoint, 0...100, 50)
@@ -200,6 +203,7 @@ nonisolated struct FilterJob: @unchecked Sendable {
     var visualizesPointColor = -1
     /// Option-drag on Sharpening Masking. Preview only.
     var showsSharpenMask = false
+    var denoiseControl: AIDenoiseControl?
 }
 
 nonisolated enum PixelFilter {
@@ -275,6 +279,8 @@ nonisolated enum PixelFilter {
         case .grain: image = try settings.grain.apply(job.image, unitsPerPixel: 1 / job.scale, seed: job.seed)
         case .dither: image = try settings.dither.apply(job.image)
         case .scanlines: image = try settings.scanlines.apply(job.image)
+        case .aiDenoise:
+            image = try AIDenoise.run(job.image, amount: settings.denoiseAmount, control: job.denoiseControl)
         case .removeBackground:
             image = try SubjectRemoval.run(job.image, settings: settings)
         case .contentAwareFill:
@@ -454,6 +460,8 @@ final class FilterEdit {
     var committing = false
     var previewError: String?
     var preparing = false
+    var denoiseProgress: Double = 0
+    @ObservationIgnored var denoiseControl: AIDenoiseControl?
     /// Add Noise's grain, fixed while the panel is open so changing Amount doesn't reshuffle it.
     let seed = UInt32.random(in: .min ... .max)
     /// Camera Raw panel eyes. Off drops that group's amounts from the preview and from OK, without clearing the sliders.
@@ -542,6 +550,7 @@ final class FilterEdit {
         let ready = try Self.prepared(kind: kind, from: asset.image, placed: layer.transform)
         mapping = ready.mapping
         previewSource = ready.previewSource
+        if kind == .aiDenoise, let deep = try DeepLayer.flattened(asset) { previewSource = deep }
         previewScale = ready.previewScale
         previewMapping = ready.previewMapping
         hdrPreviewSource = try Self.hdrPreview(of: asset, inside: nil, grid: nil, size: ready.previewSource)
@@ -621,7 +630,7 @@ final class FilterEdit {
         let mapping = BrushRaster.pixelToDocument(placed, width: source.width, height: source.height)
         // Camera Raw keeps native detail throughout slider drags. Noise, grain, dither and scanlines also need
         // full-size pixels: made on a smaller copy they would look coarser once enlarged.
-        let factor = [.cameraRaw, .addNoise, .grain, .dither, .scanlines, .contentAwareFill, .removeBackground].contains(kind)
+        let factor = [.cameraRaw, .addNoise, .aiDenoise, .grain, .dither, .scanlines, .contentAwareFill, .removeBackground].contains(kind)
             ? 1 : min(1, previewLimit / CGFloat(max(source.width, source.height)))
         guard factor < 1 else { return (mapping, source, 1, mapping) }
         let w = max(1, Int(CGFloat(source.width) * factor)), h = max(1, Int(CGFloat(source.height) * factor))
@@ -682,6 +691,7 @@ final class FilterEdit {
             job.cameraRawBrightness = previewBrightness
             job.cameraRawUsesGPU = previewSource.width * previewSource.height >= MetalCameraRawLookup.minimumPixels
         }
+        if kind == .aiDenoise { job.sixteenBit = previewSource.bitsPerComponent > 8 }
         return job
     }
 }
@@ -700,6 +710,10 @@ extension EditorSession {
         }
         commitTransform(); cancelCrop(); cancelLasso()
         guard var layer = activeLayer, let document else { return }
+        if kind == .aiDenoise, layer.asset?.isHDR == true {
+            brushError = AIDenoiseError.unsupportedHDR.localizedDescription
+            return
+        }
         do {
             // An empty layer has no pixels until something is put on it; Vignette starts it with clear ones.
             let startedEmpty = layer.asset == nil
@@ -771,14 +785,19 @@ extension EditorSession {
         guard let edit = filterEdit, !edit.committing else { return }
         edit.settings = settings.normalized
         edit.preview = preview
+        if edit.kind == .aiDenoise { edit.denoiseControl?.cancel() }
         // A bigger blur needs more room around the layer than it was given.
         if FilterEdit.blurMargin(edit.kind, edit.settings) > edit.grownMargin {
             do { try edit.growForBlur() }
             catch { brushError = error.localizedDescription }
         }
         if previewAdjustmentEditing(preview: preview) { return }
-        if edit.kind.isAutomatic, edit.preparedPreview != nil, edit.preparedSettings == edit.settings { brushRevision += 1; return }
-        guard preview else {
+        if edit.kind.isAutomatic, edit.preparedPreview != nil, edit.preparedSettings == edit.settings {
+            if edit.kind == .aiDenoise { edit.pending = nil }
+            brushRevision += 1
+            return
+        }
+        guard preview || edit.kind == .aiDenoise else {
             edit.pending = nil; edit.preparedPreview = nil; brushRevision += 1
             return
         }
@@ -798,6 +817,18 @@ extension EditorSession {
         let hdrSource = edit.kind.isAutomatic ? nil : edit.hdrPreviewSource
         edit.preparing = true
         edit.previewError = nil
+        if job.kind == .aiDenoise {
+            let id = UUID()
+            let control = AIDenoiseControl(id: id) { [weak edit] fraction in
+                Task { @MainActor [weak edit] in
+                    guard let edit, edit.denoiseControl?.id == id else { return }
+                    edit.denoiseProgress = fraction
+                }
+            }
+            edit.denoiseControl = control
+            edit.denoiseProgress = 0
+            job.denoiseControl = control
+        }
         edit.previewTask = Task { @MainActor [weak self, weak edit] in
             let result = await Task.detached(priority: .userInitiated) { () -> (CGImage?, CameraRawScope?, String?, CameraRawTables.Brightness?) in
                 var run = job
@@ -827,6 +858,10 @@ extension EditorSession {
             }
             edit.previewTask = nil
             edit.preparing = false
+            if job.kind == .aiDenoise, job.settings != edit.settings || edit.pending != nil {
+                self.renderFilterPreview(edit)
+                return
+            }
             // Made before the layer grew for a bigger blur: it still shows, in the place it was made for, until the
             // render from the grown layer replaces it.
             let current = sourceVersion == edit.previewSourceVersion
@@ -850,6 +885,7 @@ extension EditorSession {
         if case .dither = colorPicker?.target { closeColorPicker(commit: false) }
         if finishAdjustmentEditing(commit: false) { return }
         guard let edit = filterEdit, !edit.committing else { return }
+        edit.denoiseControl?.cancel()
         edit.previewTask?.cancel()
         if edit.kind == .cameraRaw, edit.previewJob.cameraRawUsesGPU {
             Task.detached(priority: .utility) { MetalCameraRawLookup.shared?.discardBuffers() }
@@ -865,8 +901,14 @@ extension EditorSession {
         if finishAdjustmentEditing(commit: true) { return }
         guard let edit = filterEdit, !edit.committing else { return }
         if edit.kind.isAutomatic {
-            await edit.previewTask?.value
+            if edit.kind == .aiDenoise {
+                while let task = edit.previewTask {
+                    await task.value
+                    guard filterEdit === edit else { return }
+                }
+            } else { await edit.previewTask?.value }
             guard filterEdit === edit, !edit.committing, edit.preparedPreview != nil, edit.previewError == nil else { return }
+            if edit.kind == .aiDenoise, edit.preparedSettings != edit.settings { return }
             // Remove Background masks from the full-size image, so a preview made at preview size is fine to discard.
         }
         // A hidden Camera Raw group is absent from the layer. Remember that rendered grade, including
@@ -875,6 +917,7 @@ extension EditorSession {
         if edit.kind == .cameraRaw { filterSettings = rendered }
         // No distortion to remove: close as Cancel does, without an undo step.
         if (edit.kind == .lensCorrection && edit.settings.distortion == 0)
+            || (edit.kind == .aiDenoise && edit.settings.denoiseAmount == 0)
             || (edit.kind == .vignette && edit.settings.vignetteAmount == 0)
             || (edit.kind == .bloomGlow && edit.settings.bloomAmount == 0)
             || (edit.kind == .tonalContrast && (edit.settings.tonalAmount == 0 ||
@@ -921,6 +964,9 @@ extension EditorSession {
                 edit.grownInside.map { (size: CGSize(width: grownImage.width, height: grownImage.height), inside: $0) }
             }
             let made = try await Task.detached(priority: .userInitiated) { () -> (asset: ImportedImage, transform: LayerTransform?) in
+                if job.kind == .aiDenoise, let cached, cached.bitsPerComponent > 8 {
+                    return (try DeepLayer.asset(cached, name: job.kind.rawValue), grown)
+                }
                 // Exposure on an HDR layer, exactly: turned down, it brings highlights into view.
                 if let deep, DeepLayer.isHDR(deep), job.kind == .exposure {
                     var result = try DeepLayer.exposure(deep, job.settings.exposure)

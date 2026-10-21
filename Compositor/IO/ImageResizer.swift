@@ -17,7 +17,7 @@ actor ImageResizer {
         let old = snapshot.manifest
         var manifest = ProjectManifest(resolution: options.resolution, documentID: old.documentID,
             width: options.width, height: options.height, activeLayerID: old.activeLayerID, layers: [],
-            guides: old.guides)
+            guides: old.guides, originalAspectRatio: old.originalAspectRatio, cropMask: old.cropMask)
         if old.width == options.width && old.height == options.height {
             manifest.layers = old.layers
             return ProjectSnapshot(manifest: manifest, images: snapshot.images, masks: snapshot.masks)
@@ -25,6 +25,8 @@ actor ImageResizer {
         guard options.width * options.height <= DocumentLimits.maxSurfacePixels else { throw ProjectError.tooLarge }
         let sx = CGFloat(options.width) / CGFloat(old.width)
         let sy = CGFloat(options.height) / CGFloat(old.height)
+        manifest.cropMask = old.cropMask?.scaled(x: sx, y: sy, visibleSize: CGSize(width: options.width, height: options.height))
+        if let crop = manifest.cropMask, !crop.isValid(width: options.width, height: options.height) { throw ProjectError.tooLarge }
         // Effects are sized in pixels, so they scale with the pixels, as Photoshop's Scale Styles does: by the mean of
         // the two factors when the image is stretched. Live text and shapes are resampled into plain pixels.
         let effectScale = (sx * sy).squareRoot()
@@ -114,7 +116,8 @@ extension EditorSession {
         beginEdit(actionName)
         let m = snapshot.manifest
         document = CanvasDocument(id: m.documentID, width: m.width, height: m.height,
-            layers: snapshot.documentLayers, resolution: m.resolution ?? 72, guides: m.guides ?? [])
+            layers: snapshot.documentLayers, resolution: m.resolution ?? 72, guides: m.guides ?? [],
+            originalAspectRatio: m.originalAspectRatio, cropMask: m.cropMask)
         endEdit()
         viewport.fit(documentSize: document!.size)
     }

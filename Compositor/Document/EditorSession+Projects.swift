@@ -14,7 +14,8 @@ extension EditorSession {
         }
         return ProjectSnapshot(manifest: ProjectManifest(resolution: document.resolution, documentID: document.id, width: document.width,
             height: document.height, activeLayerID: activeLayerID, layers: layers,
-            guides: document.guides.isEmpty ? nil : document.guides), images: images, masks: masks)
+            guides: document.guides.isEmpty ? nil : document.guides,
+            originalAspectRatio: document.originalAspectRatio, cropMask: document.cropMask), images: images, masks: masks)
     }
 
     /// Called only after the entire package has successfully validated and loaded.
@@ -26,7 +27,8 @@ extension EditorSession {
         let manifest = snapshot.manifest
         transformEdit = nil
         document = CanvasDocument(id: manifest.documentID, width: manifest.width, height: manifest.height,
-            layers: snapshot.documentLayers, resolution: manifest.resolution ?? 72, guides: manifest.guides ?? [])
+            layers: snapshot.documentLayers, resolution: manifest.resolution ?? 72, guides: manifest.guides ?? [],
+            originalAspectRatio: manifest.originalAspectRatio ?? snapshot.legacyOriginalAspectRatio, cropMask: manifest.cropMask)
         activeLayerID = manifest.activeLayerID
         projectURL = url
         renamingLayerID = nil
@@ -74,6 +76,13 @@ extension EditorSession {
 }
 
 extension ProjectSnapshot {
+    /// Legacy projects did not record the import ratio; full layer pixels are the best available source.
+    var legacyOriginalAspectRatio: Double? {
+        guard manifest.version < 15,
+              let first = manifest.layers.first(where: { $0.imageFile != nil }), let image = images[first.id]?.image else { return nil }
+        return Double(image.width) / Double(image.height)
+    }
+
     /// The layers the manifest records, each with its pixels, mask, effects and live text or shape. Opening a project
     /// and the edits that rebuild the document from a snapshot (canvas and image size, crop, trim) all build them here,
     /// so none of them leaves part of a layer behind.

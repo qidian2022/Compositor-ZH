@@ -52,50 +52,50 @@ struct GridSettingsSheet: View {
 
     @ViewBuilder private var sheet: some View {
         VStack(alignment: .leading, spacing: 18) {
-            Text("Grid").font(.title2.bold())
+            Text(zh("Grid")).font(.title2.bold())
             HStack {
-                Text("Color").frame(width: 110, alignment: .leading)
-                Picker("Color", selection: $appearance.preset) {
-                    ForEach(GridAppearance.Preset.allCases) { Text($0.rawValue).tag($0) }
+                Text(zh("Color")).frame(width: 110, alignment: .leading)
+                Picker(zh("Color"), selection: $appearance.preset) {
+                    ForEach(GridAppearance.Preset.allCases) { Text(zh($0.rawValue)).tag($0) }
                 }.labelsHidden()
                 DialogColorSwatch(title: "Grid Color", color: swatchColor, session: session)
-                    .help("Choose a custom grid color")
+                    .help(zh("Choose a custom grid color"))
             }
             HStack {
-                Text("Style").frame(width: 110, alignment: .leading)
-                Picker("Style", selection: $appearance.style) {
-                    ForEach(GridAppearance.Style.allCases) { Text($0.rawValue).tag($0) }
+                Text(zh("Style")).frame(width: 110, alignment: .leading)
+                Picker(zh("Style"), selection: $appearance.style) {
+                    ForEach(GridAppearance.Style.allCases) { Text(zh($0.rawValue)).tag($0) }
                 }.labelsHidden()
             }
             HStack {
-                Text("Opacity").frame(width: 110, alignment: .leading)
+                Text(zh("Opacity")).frame(width: 110, alignment: .leading)
                     .scrubbable(sensitivity: 0.5, value: $appearance.opacity, range: GridAppearance.opacityRange)
                 Slider(value: Binding(get: { Double(appearance.opacity) }, set: { appearance.opacity = Int($0.rounded()) }),
                        in: Double(GridAppearance.opacityRange.lowerBound)...Double(GridAppearance.opacityRange.upperBound))
-                TextField("Opacity", value: Binding(get: { appearance.opacity }, set: setOpacity), format: .number)
+                TextField(zh("Opacity"), value: Binding(get: { appearance.opacity }, set: setOpacity), format: .number)
                     .frame(width: 48).multilineTextAlignment(.trailing)
                     .arrowSteps(value: { Double(appearance.opacity) }, change: { setOpacity(Int($0.rounded())) })
                     .unitSuffix("%")
             }
             Divider()
             HStack {
-                Text("Gridline every").frame(width: 110, alignment: .leading)
+                Text(zh("Gridline every")).frame(width: 110, alignment: .leading)
                     .scrubbable(sensitivity: 1, value: $spacing, range: LayoutGrid.spacingRange)
-                TextField("Gridline every", value: $spacing, format: .number)
-                Text("pixels").foregroundStyle(.secondary)
+                TextField(zh("Gridline every"), value: $spacing, format: .number)
+                Text(zh("pixels")).foregroundStyle(.secondary)
             }
             HStack {
-                Text("Subdivisions").frame(width: 110, alignment: .leading)
+                Text(zh("Subdivisions")).frame(width: 110, alignment: .leading)
                     .scrubbable(sensitivity: 0.2, value: $subdivisions, range: LayoutGrid.subdivisionRange)
-                TextField("Subdivisions", value: $subdivisions, format: .number)
+                TextField(zh("Subdivisions"), value: $subdivisions, format: .number)
             }
-            Text(valid ? "A subdivision every \(Double(grid.step).formatted(.number.precision(.fractionLength(0...2)))) pixels."
-                       : "Use gridlines every \(LayoutGrid.spacingRange.lowerBound)–\(LayoutGrid.spacingRange.upperBound.formatted()) pixels and \(LayoutGrid.subdivisionRange.lowerBound)–\(LayoutGrid.subdivisionRange.upperBound) subdivisions, no more than the pixels between gridlines.")
+            Text(zh(valid ? "A subdivision every \(Double(grid.step).formatted(.number.precision(.fractionLength(0...2)))) pixels."
+                       : "Use gridlines every \(LayoutGrid.spacingRange.lowerBound)–\(LayoutGrid.spacingRange.upperBound.formatted()) pixels and \(LayoutGrid.subdivisionRange.lowerBound)–\(LayoutGrid.subdivisionRange.upperBound) subdivisions, no more than the pixels between gridlines."))
                 .foregroundStyle(valid ? Color.secondary : Color.orange).font(.callout)
                 .fixedSize(horizontal: false, vertical: true)
             HStack {
-                Button("Cancel") { DialogColorSwatch.closePicker(session); finish(nil) }.configuredNativeShortcut(.escape)
-                Button("Restore Defaults") {
+                Button(zh("Cancel")) { DialogColorSwatch.closePicker(session); finish(nil) }.configuredNativeShortcut(.escape)
+                Button(zh("Restore Defaults")) {
                     spacing = LayoutGrid().spacing
                     subdivisions = LayoutGrid().subdivisions
                     // The Custom color is kept, so it's still there if Custom is chosen again.
@@ -105,7 +105,7 @@ struct GridSettingsSheet: View {
                     appearance.opacity = GridAppearance().opacity
                 }
                 Spacer()
-                Button("OK") {
+                Button(zh("OK")) {
                     guard valid else { return }
                     DialogColorSwatch.closePicker(session)
                     finish((grid, appearance))

@@ -23,29 +23,29 @@ struct PSDConversionSheet: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text(request.title).font(.title2.bold())
-            Text(request.isReading ? "Reading the file to see what needs converting."
-                 : "Compositor will convert these Photoshop features. Nothing is applied until you continue.")
+            Text(zh(request.title)).font(.title2.bold())
+            Text(zh(request.isReading ? "Reading the file to see what needs converting."
+                 : "Compositor will convert these Photoshop features. Nothing is applied until you continue."))
                 .foregroundStyle(.secondary)
             if request.isReading {
                 HStack(spacing: 10) {
                     ProgressView().controlSize(.small)
-                    Text("Reading the Photoshop file…").foregroundStyle(.secondary)
+                    Text(zh("Reading the Photoshop file…")).foregroundStyle(.secondary)
                 }
                 .frame(maxWidth: .infinity, minHeight: 180)
             } else {
                 List(request.conversions) { item in
                     VStack(alignment: .leading, spacing: 4) {
-                        Text(item.layerName).font(.headline)
-                        Text(item.message)
+                        Text(zh(item.layerName)).font(.headline)
+                        Text(zh(item.message))
                     }.padding(.vertical, 4)
                 }
                 .frame(minHeight: 180)
             }
             HStack {
                 Spacer()
-                Button("Cancel") { finish(false) }.keyboardShortcut(.cancelAction)
-                Button(request.confirmTitle) { finish(true) }.keyboardShortcut(.defaultAction)
+                Button(zh("Cancel")) { finish(false) }.keyboardShortcut(.cancelAction)
+                Button(zh(request.confirmTitle)) { finish(true) }.keyboardShortcut(.defaultAction)
                     .disabled(request.isReading)
             }
         }

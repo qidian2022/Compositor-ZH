@@ -17,7 +17,7 @@ extension UTType {
 
 nonisolated struct ProjectManifest: Codable, Sendable {
     /// The format version new saves write.
-    static let current = 14
+    static let current = 15
     /// Every version `load` accepts. The package-header check, the manifest check and the error
     /// message all read this, so they cannot drift apart when `current` is bumped.
     static let supported = 1...ProjectManifest.current
@@ -33,6 +33,9 @@ nonisolated struct ProjectManifest: Codable, Sendable {
     var layers: [ProjectLayerRecord]
     /// Alignment guides. Missing on versions 1–7.
     var guides: [CanvasGuide]? = nil
+    /// First imported photo's ratio; independent of subsequent canvas edits.
+    var originalAspectRatio: Double? = nil
+    var cropMask: CanvasCrop? = nil
 }
 
 nonisolated struct ProjectLayerRecord: Codable, Sendable {
@@ -219,6 +222,15 @@ actor ProjectStore {
         }
         guard (1...DocumentLimits.maxSide).contains(manifest.width), (1...DocumentLimits.maxSide).contains(manifest.height),
               manifest.layers.count <= 10_000 else { throw ProjectError.tooLarge }
+        if let ratio = manifest.originalAspectRatio {
+            guard manifest.version >= 15, ratio.isFinite, ratio > 0,
+                  ratio <= Double(DocumentLimits.maxSide) else { throw ProjectError.invalid }
+        }
+        if let crop = manifest.cropMask {
+            guard manifest.version >= 15, crop.isValid(width: manifest.width, height: manifest.height) else {
+                throw ProjectError.invalid
+            }
+        }
         for layer in manifest.layers {
             if layer.shape?.smoothing == true {
                 guard manifest.version >= 14 else { throw ProjectError.invalid }

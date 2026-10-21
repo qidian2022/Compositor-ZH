@@ -15,7 +15,10 @@ actor CanvasResizer {
         guard options.width != old.width || options.height != old.height || offset != .zero else { return snapshot }
         var manifest = ProjectManifest(resolution: old.resolution, documentID: old.documentID,
             width: options.width, height: options.height, activeLayerID: old.activeLayerID, layers: [],
-            guides: old.guides?.map { $0.offset(x: offset.x, y: offset.y) })
+            guides: old.guides?.map { $0.offset(x: offset.x, y: offset.y) },
+            originalAspectRatio: old.originalAspectRatio,
+            cropMask: old.cropMask?.resizingCanvas(to: CGSize(width: options.width, height: options.height), offset: offset))
+        if let crop = manifest.cropMask, !crop.isValid(width: options.width, height: options.height) { throw ProjectError.tooLarge }
         for layer in old.layers {
             var transform = layer.transform
             transform.origin.x += offset.x

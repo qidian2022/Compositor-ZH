@@ -5,15 +5,15 @@ struct ShapeControls: View {
 
     var body: some View {
         HStack(spacing: 12) {
-            Text("Shape").font(ToolHeaderStyle.titleFont)
-            Picker("Shape", selection: Binding(get: { session.shapeKind }, set: { kind in
+            Text(zh("Shape")).font(ToolHeaderStyle.titleFont)
+            Picker(zh("Shape"), selection: Binding(get: { session.shapeKind }, set: { kind in
                 session.cancelShape()
                 session.shapeKind = kind
             })) {
-                ForEach(ShapeKind.allCases, id: \.self) { Text($0.rawValue).tag($0) }
+                ForEach(ShapeKind.allCases, id: \.self) { Text(zh($0.rawValue)).tag($0) }
             }
             .pickerStyle(.segmented).labelsHidden().fixedSize()
-            .help("Shift-U (or Tab) steps through Rectangle, Ellipse and Line")
+            .help(zh("Shift-U (or Tab) steps through Rectangle, Ellipse and Line"))
             Button { session.openColorPicker(background: false) } label: {
                 let swatch = RoundedRectangle(cornerRadius: 3, style: .continuous)
                 swatch.fill(Color(nsColor: session.foregroundColor.nsColor))
@@ -21,15 +21,15 @@ struct ShapeControls: View {
                     .frame(width: 36, height: 18)
             }
             .buttonStyle(.plain)
-            .accessibilityLabel("Fill color")
-            .help("Shapes fill with the foreground color; click to change it")
+            .accessibilityLabel(zh("Fill color"))
+            .help(zh("Shapes fill with the foreground color; click to change it"))
             if session.shapeKind == .line {
                 HStack(spacing: 6) {
-                    Text("Width").scrubbable(sensitivity: 1, value: $session.shapeLineWidth, range: 1...5000)
+                    Text(zh("Width")).scrubbable(sensitivity: 1, value: $session.shapeLineWidth, range: 1...5000)
                     Slider(value: Binding(get: { min(100, session.shapeLineWidth) },
                                           set: { session.shapeLineWidth = $0.rounded() }), in: 1...100)
                         .frame(width: 100)
-                    TextField("Width", value: Binding(get: { session.shapeLineWidth },
+                    TextField(zh("Width"), value: Binding(get: { session.shapeLineWidth },
                                                       set: { session.shapeLineWidth = $0.isFinite ? min(5000, max(1, $0)) : 4 }),
                               format: .number.precision(.fractionLength(0)))
                         .frame(width: 48).textFieldStyle(.roundedBorder).multilineTextAlignment(.trailing)
@@ -40,11 +40,11 @@ struct ShapeControls: View {
             }
             if session.shapeKind == .rectangle {
                 HStack(spacing: 6) {
-                    Text("Radius").scrubbable(sensitivity: 1, value: $session.shapeCornerRadius, range: 0...5000)
+                    Text(zh("Radius")).scrubbable(sensitivity: 1, value: $session.shapeCornerRadius, range: 0...5000)
                     Slider(value: Binding(get: { min(200, session.shapeCornerRadius) },
                                           set: { session.shapeCornerRadius = $0.rounded() }), in: 0...200)
                         .frame(width: 100)
-                    TextField("Radius", value: Binding(get: { session.shapeCornerRadius },
+                    TextField(zh("Radius"), value: Binding(get: { session.shapeCornerRadius },
                                                        set: { session.shapeCornerRadius = $0.isFinite ? min(5000, max(0, $0)) : 0 }),
                               format: .number.precision(.fractionLength(0)))
                         .frame(width: 48).textFieldStyle(.roundedBorder).multilineTextAlignment(.trailing)
@@ -52,14 +52,14 @@ struct ShapeControls: View {
                                     change: { session.shapeCornerRadius = min(5000, max(0, CGFloat($0))) })
                         .unitSuffix("px")
                 }
-                .help("Round the rectangle's corners by this many pixels; 0 keeps them square")
-                Toggle("Smooth Corners", isOn: $session.shapeSmoothing)
+                .help(zh("Round the rectangle's corners by this many pixels; 0 keeps them square"))
+                Toggle(zh("Smooth Corners"), isOn: $session.shapeSmoothing)
                     .toggleStyle(.checkbox)
                     .fixedSize()
                     .disabled(session.shapeCornerRadius <= 0)
-                    .help(session.shapeCornerRadius <= 0
+                    .help(zh(session.shapeCornerRadius <= 0
                           ? "Set a radius above 0 to use smooth corners."
-                          : "Use smooth squircle corners at 60% smoothing, matching Figma's iOS setting")
+                          : "Use smooth squircle corners at 60% smoothing, matching Figma's iOS setting"))
             }
             Spacer(minLength: 0)
         }

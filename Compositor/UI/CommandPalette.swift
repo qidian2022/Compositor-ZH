@@ -19,7 +19,7 @@ struct CommandPaletteEntry: Identifiable {
     init(id: String, title: String? = nil, shortcut: String?, isEnabled: Bool, isOn: Bool = false,
          perform: @escaping @MainActor () -> Void) {
         self.id = id
-        self.title = title ?? id
+        self.title = zh(title ?? id)
         self.shortcut = shortcut
         self.isEnabled = isEnabled
         self.isOn = isOn
@@ -88,7 +88,7 @@ enum CommandPaletteSearch {
     /// order, enabled first.
     static func rank(_ entries: [CommandPaletteEntry], query: String) -> [CommandPaletteEntry] {
         let scored = entries.enumerated().compactMap { index, entry in
-            score(query, in: entry.title).map { (entry, $0, index) }
+            score(query, in: entry.title + " " + entry.id).map { (entry, $0, index) }
         }
         return scored.sorted { a, b in
             if a.0.isEnabled != b.0.isEnabled { return a.0.isEnabled }
