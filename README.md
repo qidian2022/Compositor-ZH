@@ -4,7 +4,7 @@
 
 图层、蒙版、选区、画笔、RAW 显影与调色工具集中在一个原生 Mac 界面中，无订阅费用。适合希望使用中文界面、完成日常照片处理和设计工作的用户。
 
-[下载 1.5.3-zh.2](https://github.com/qidian2022/Compositor-ZH/releases/tag/v1.5.3-zh.2) · [反馈问题](https://github.com/qidian2022/Compositor-ZH/issues) · [版本记录](CHANGELOG.md)
+[下载 1.5.3-zh.3](https://github.com/qidian2022/Compositor-ZH/releases/tag/v1.5.3-zh.3) · [反馈问题](https://github.com/qidian2022/Compositor-ZH/issues) · [版本记录](CHANGELOG.md)
 
 ![Compositor 中文编辑界面](docs/images/editor-zh.jpg)
 
@@ -13,6 +13,7 @@
 | 用途 | 功能 |
 | --- | --- |
 | 图层合成 | 图层与分组、不透明度、混合模式、图层蒙版、剪贴蒙版、调整图层、合并与复制 |
+| AI 主体与背景 | 主体或背景到新图层、一键分离、可编辑软蒙版，原图保留并隐藏 |
 | 抠图与选区 | 矩形与椭圆选框、套索、多边形套索、魔棒、对象与主体选择、选区扩展/收缩/羽化 |
 | 修图与绘画 | 画笔、橡皮擦、修复画笔、仿制图章、内容识别填充、模糊、涂抹、液化、吸管 |
 | 裁剪与变换 | 自由裁剪、固定比例裁剪、可隐藏或移除的裁剪蒙版、旋转、翻转、缩放与自由扭曲 |
@@ -22,6 +23,12 @@
 | AI 照片降噪 | 本地神经网络降噪、强度调节、原图对比、选区处理，保留透明度和 16 位精度 |
 | 保存与输出 | `.comp` 分层项目保存，PNG、JPEG、TIFF、单页 PDF、EXR 导出，CMYK 软打样与色域警告 |
 | 操作效率 | 多项目标签、撤销与重做、中文命令搜索、可自定义快捷键 |
+
+### 新增 AI 功能
+
+在右侧图层面板或“图层 → AI 主体与背景”中，将主体、背景提取到带可编辑蒙版的新图层，也可一键分离两者。原图保留并隐藏，支持撤销重做。
+
+在“滤镜 → AI 照片降噪”中调整降噪强度，关闭预览可对比原图；支持选区、透明度和 16 位 SDR 图像。两项功能均在本机处理，无需上传照片。详见[主体与背景](docs/ai-subject-background.md)和[照片降噪](docs/ai-denoise.md)。
 
 ### 新版裁剪
 
@@ -37,7 +44,7 @@
 
 ### 使用 DMG 安装（推荐）
 
-1. 打开[下载页面](https://github.com/qidian2022/Compositor-ZH/releases/tag/v1.5.3-zh.2)，在 **Assets** 中下载 `Compositor-ZH-1.5.3-zh.2-arm64.dmg`。
+1. 打开[下载页面](https://github.com/qidian2022/Compositor-ZH/releases/tag/v1.5.3-zh.3)，在 **Assets** 中下载 `Compositor-ZH-1.5.3-zh.3-arm64.dmg`。
 2. 双击 DMG，将 **Compositor 中文版.app** 拖入窗口里的 **Applications（应用程序）**。
 3. 从 Finder 的“应用程序”文件夹打开 **Compositor 中文版**。
 4. 安装完成后，可以推出安装磁盘，并删除下载的 DMG。

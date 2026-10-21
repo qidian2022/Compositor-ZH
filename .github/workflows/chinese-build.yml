@@ -1,7 +1,7 @@
 name: Chinese build
 on:
   push:
-    branches: [zh-Hans]
+    branches: [main, zh-Hans]
   pull_request:
   workflow_dispatch:
 permissions:
@@ -18,6 +18,8 @@ jobs:
         run: python3 localization/test_crop.py
       - name: AI denoise regression checks
         run: python3 localization/test_ai_denoise.py
+      - name: AI subject and background regression checks
+        run: python3 localization/test_subject_extraction.py
       - name: Build from source resources
         run: python3 localization/build.py
       - name: Verify bundle and signature

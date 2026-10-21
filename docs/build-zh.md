@@ -23,7 +23,7 @@ python3 localization/build.py --sdk /path/to/MacOSX26.5.sdk
 
 脚本从源码编译 Swift 和 C，每次重新编译 C 对象，直接从 `Compositor/Resources` 复制调色资源，从源码 PNG 生成 `.icns` 图标。不会读取 `/Applications` 下的现成应用，也不会下载任何二进制依赖。
 
-产物是 `build/Compositor 中文版.app`，应用标识 `io.github.qidian2022.compositor-zh`，可与上游独立保存偏好设置。运行时版本为 `1.5.3-zh.2`（标准版本字段 1.5.3，构建号 15302）。仅 ad-hoc 签名，没有 Developer ID 或公证；命令行产物未启用 App Sandbox，权限由系统和用户文件操作控制。
+产物是 `build/Compositor 中文版.app`，应用标识 `io.github.qidian2022.compositor-zh`，可与上游独立保存偏好设置。运行时版本为 `1.5.3-zh.3`（标准版本字段 1.5.3，构建号 15303）。仅 ad-hoc 签名，没有 Developer ID 或公证；命令行产物未启用 App Sandbox，权限由系统和用户文件操作控制。
 
 ## Xcode 工程
 
@@ -57,6 +57,6 @@ python3 localization/package.py --app "build/Compositor 中文版.app"
 
 该方式会先复制应用到临时目录并验证签名；应确保输入应用没有被其他构建同时覆盖。正式发行优先使用默认的重新构建流程。校验文件只包含本次生成的同版本 DMG 和 ZIP。
 
-发布前检查 Git 差异、资源一致性、签名验证和 GUI 冒烟测试，再把已提交的中文版分支打上 `v1.5.3-zh.2` 标签，上传 DMG、ZIP、校验文件及发布说明。标签必须指向实际构建的提交。发行仍标记为预览版，直到验证范围足够。
+发布前检查 Git 差异、资源一致性、签名验证和 GUI 冒烟测试，再把已提交的 `main` 分支打上 `v1.5.3-zh.3` 标签，上传 DMG、ZIP、校验文件及发布说明。标签必须指向实际构建的提交。发行仍标记为预览版，直到验证范围足够。
 
 原上游的证书、公证配置及 Sparkle 发布脚本已替换，不能向上游更新源发布中文版。未来如加入 Developer ID 签名和公证，应由维护者配置自己的凭证，不要提交证书或密钥。
